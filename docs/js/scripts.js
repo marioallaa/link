@@ -175,19 +175,51 @@
         // initiate variables with form content
         var email = $("#semail").val();
         var name = $("#sname").val();
+        var surname = $("#ssurname").val();
+        var username = $("#suname").val();
         var password = $("#spassword").val();
         var terms = $("#sterms").val();
 
+        var data = {
+            email: email,
+            name: name,
+            role: 1,
+            surname: surname,
+            username: username,
+            password: password
+
+        }
+        console.log(data);
         $.ajax({
             type: "POST",
-            url: "php/signupform-process.php",
-            data: "email=" + email + "&name=" + name + "&password=" + password + "&terms=" + terms,
+            url: "http://localhost:3000/auth/register",
+            data: data,
             success: function(text) {
-                if (text == "success") {
-                    sformSuccess();
+                console.log(text)
+                if (text.id != null) {
+                    var d = { username: username, password: password }
+                    console.log(d);
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:3000/auth/login",
+                        data: d,
+                        success: function(text) {
+                            console.log(text)
+                            if (text.access_token != null) {
+                                localStorage.setItem('token', text.access_token)
+                                sformSuccess();
+                                setTimeout(function() {
+                                    window.location.href = "preorder.html";
+                                }, 500)
+                            } else {
+                                sformError();
+                                ssubmitMSG(false, text);
+                            }
+                        }
+                    });
                 } else {
                     sformError();
-                    ssubmitMSG(false, text);
+                    ssubmitMSG(false, "This username is taken")
                 }
             }
         });
@@ -230,16 +262,22 @@
 
     function lsubmitForm() {
         // initiate variables with form content
-        var email = $("#lemail").val();
+        var username = $("#lemail").val();
         var password = $("#lpassword").val();
-
+        var d = { username: username, password: password }
+        console.log(d);
         $.ajax({
             type: "POST",
-            url: "php/loginform-process.php",
-            data: "email=" + email + "&password=" + password,
+            url: "http://localhost:3000/auth/login",
+            data: d,
             success: function(text) {
-                if (text == "success") {
+                console.log(text)
+                if (text.access_token != null) {
+                    localStorage.setItem('token', text.access_token)
                     lformSuccess();
+                    setTimeout(function() {
+                        window.location.href = "preorder.html";
+                    }, 500)
                 } else {
                     lformError();
                     lsubmitMSG(false, text);

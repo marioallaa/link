@@ -24,13 +24,26 @@
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/fontawesome-all.css" rel="stylesheet">
-    <link href="css/swiper.css" rel="stylesheet">
-	<link href="css/magnific-popup.css" rel="stylesheet">
-	<link href="css/styles.css" rel="stylesheet">
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/fontawesome-all.css" rel="stylesheet">
+    <link href="../../css/swiper.css" rel="stylesheet">
+	<link href="../../css/magnific-popup.css" rel="stylesheet">
+	<link href="../../css/styles.css" rel="stylesheet">
 
-    <STYLE>A {text-decoration: none;} </STYLE>
+    <STYLE>A {text-decoration: none;} 
+     /* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+} </STYLE>
 	<!-- Favicon  -->
     <link rel="icon" href="images/logo-b.png">
 </head>
@@ -51,10 +64,10 @@
         <div class="container">
 
             <!-- Text Logo - Use this if you don't have a graphic logo -->
-            <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Tivo</a> -->
+            <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Ogier</a> -->
 
             <!-- Image Logo -->
-            <a style="decoration: none;" href="index.html#header">  <h1 style="color:white;" > OGIER  </h1></a>
+            <a style="decoration: none;" href="../../index.html#header">  <h1 style="color:white;" > OGIER  </h1></a>
 
             <!-- Mobile Menu Toggle Button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,24 +75,26 @@
                 <span class="navbar-toggler-awesome fas fa-times"></span>
             </button>
             <!-- end of mobile menu toggle button -->
-
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="index.html#header">HOME <span class="sr-only">(current)</span></a>
+                        <a class="nav-link page-scroll" href="../../index.html#header">HOME <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="index.html#features">FEATURES</a>
+                        <a class="nav-link page-scroll" href="../../index.html#features">FEATURES</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="index.html#details">DETAILS</a>
+                        <a class="nav-link page-scroll" href="../../index.html#impact">IMPACT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="../../index.html#video">VIDEO</a>
                     </li>
 
                     <!-- Dropdown Menu -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle page-scroll" href="index.html#video" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">VIDEO</a>
+                        <a class="nav-link dropdown-toggle page-scroll" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">MORE</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="article-details.html"><span class="item-text">ARTICLE DETAILS</span></a>
+                            <a class="dropdown-item" href="article-details.html"><span class="item-text">OGIER Card </span></a>
                             <div class="dropdown-items-divide-hr"></div>
                             <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">TERMS CONDITIONS</span></a>
                             <div class="dropdown-items-divide-hr"></div>
@@ -89,11 +104,11 @@
                     <!-- end of dropdown menu -->
 
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="index.html#pricing">PRICING</a>
+                        <a class="nav-link page-scroll" href="../../index.html#pricing">PRICING</a>
                     </li>
                 </ul>
                 <span class="nav-item">
-                    <a class="btn-outline-sm" href="log-in.html">LOG IN</a>
+                    <a class="btn-outline-sm" href="auth/login/index.html">LOG IN</a>
                 </span>
             </div>
         </div> <!-- end of container -->
@@ -101,33 +116,71 @@
     <!-- end of navigation -->
 
 
+    <script>
+    // Get the elements with class="column"
+var elements = document.getElementsByClassName("column");
+
+// Declare a loop variable
+var i;
+
+// List View
+function listView() {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.width = "100%";
+  }
+}
+
+// Grid View
+function gridView() {
+  for (i = 0; i < elements.length; i++) {
+    elements[i].style.width = "50%";
+  }
+} 
+    </script>
+
     <!-- Header -->
     <header id="header" class="ex-2-header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Sign Up</h1>
-                   <p>Fill out the form below to sign up for Tivo. Already signed up? Then just <a class="white" href="log-in.html">Log In</a></p> 
+                   <p>Fill out the form below to sign up for your Ogier Card <a class="white" href="../../auth/login/index.html">Log In</a></p> 
                     <!-- Sign Up Form -->
                     <div class="form-container">
                         <form id="signUpForm" data-toggle="validator" data-focus="false">
+                        <div class="row">
+  <div class="column">
+                            <div class="form-group">
+                                <input type="text" class="form-control-input" id="sname" required>
+                                <label class="label-control" for="sname">Name</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+  </div>
+  <div class="column">
+                            <div class="form-group">
+                                <input type="text" class="form-control-input" id="ssurname" required>
+                                <label class="label-control" for="ssurname">Surname</label>
+                                <div class="help-block with-errors"></div>
+                            </div>
+  </div>
+</div>
                             <div class="form-group">
                                 <input type="email" class="form-control-input" id="semail" required>
                                 <label class="label-control" for="semail">Email</label>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control-input" id="sname" required>
-                                <label class="label-control" for="sname">Name</label>
+                                <input type="text" class="form-control-input" id="suname" required>
+                                <label class="label-control" for="sname">Username</label>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control-input" id="spassword" required>
+                                <input type="password" class="form-control-input" id="spassword" required>
                                 <label class="label-control" for="spassword">Password</label>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group checkbox">
-                                <input type="checkbox" id="sterms" value="Agreed-to-Terms" required>I agree with Tivo's <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a>
+                                <input type="checkbox" id="sterms" value="Agreed-to-Terms" required>I agree with Ogier's <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
@@ -148,13 +201,13 @@
 
 
     <!-- Scripts -->
-    <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
-    <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
-    <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
-    <script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
-    <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
-    <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
-    <script src="js/scripts.js"></script> <!-- Custom scripts -->
+    <script src="../../js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="../../js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="../../js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="../../js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="../../js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="../../js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="../../js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="../../js/scripts.js"></script> <!-- Custom scripts -->
 </body>
 </html>
