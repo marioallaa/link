@@ -209,7 +209,7 @@
                                 localStorage.setItem('token', text.access_token)
                                 sformSuccess();
                                 setTimeout(function() {
-                                    window.location.href = "preorder.html";
+                                    window.location.href = "../../index.html";
                                 }, 500)
                             } else {
                                 sformError();
@@ -276,7 +276,7 @@
                     localStorage.setItem('token', text.access_token)
                     lformSuccess();
                     setTimeout(function() {
-                        window.location.href = "preorder.html";
+                        window.location.href = "../../index.html";
                     }, 500)
                 } else {
                     lformError();

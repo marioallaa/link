@@ -47,6 +47,17 @@ Colors:
 
 /******************************/
 
+.user-buttons {
+    padding: 46px;
+    border-radius: 0.5rem;
+}
+
+.user-buttons:hover {
+    transition: all .2s ease-in-out;
+    transform: scale(1.16);
+    box-shadow: 2px 2px 2px 2px #0000002a;
+}
+
 body,
 html {
     width: 100%;
@@ -1193,6 +1204,38 @@ screen and (-ms-high-contrast: none) {
 }
 
 
+/***********************************/
+
+
+/*     08. Features Lightboxes-user     */
+
+
+/***********************************/
+
+.lightbox-user {
+    margin: 2.5rem auto;
+    width: 100%;
+    padding: 2.5rem 0.25rem 0.5rem 0.25rem;
+    border-radius: 0.25rem;
+    background: #fff;
+    text-align: left;
+}
+
+.lightbox-user .container {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.lightbox-user button.mfp-close.x-button {
+    position: absolute;
+    top: -0.125rem;
+    right: -0.125rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    color: #707984;
+}
+
+
 /***********************/
 
 
@@ -1889,6 +1932,9 @@ a:hover.back-to-top {
 /* Min-width width 992px */
 
 @media (min-width: 992px) {
+    .lightbox-user {
+        width: 80%;
+    }
     /* Navigation */
     .navbar-custom {
         padding: 2.125rem 1.5rem 2.125rem 2rem;
