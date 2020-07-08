@@ -132,7 +132,7 @@
               </div>
             </a>
 
-            <a href="#!" style="padding: 60px; margin-top:64px; margin-bottom: 32px;  margin-left: auto; margin-right: auto;">
+            <a class="popup-with-move-anim" href="#pay" style="padding: 60px; margin-top:64px; margin-bottom: 32px;  margin-left: auto; margin-right: auto;">
               <div  class="white border lighten-3 col user-buttons s12 waves-effect">
                 <i class="indigo-text text-lighten-1 large material-icons">payment</i>
                 <span class="indigo-text text-lighten-1"><h5>Subsription</h5></span>
@@ -207,6 +207,41 @@
 
 	<div id="cardData"  class="lightbox-user zoom-anim-dialog mfp-hide">
         <iframe src="cardData.html" style="width: 100%; height:712px; border-width:0px"> </iframe>
+  </div>
+
+
+  
+	<div id="pay"  class="lightbox-user zoom-anim-dialog mfp-hide">
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  <div id="paypal-button-container"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR" data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+      style: {
+          shape: 'rect',
+          color: 'silver',
+          layout: 'vertical',
+          label: 'buynow',
+          
+      },
+      createOrder: function(data, actions) {
+          return actions.order.create({
+              purchase_units: [{
+                  amount: {
+                      value: '0.01'
+                  }
+              }]
+          });
+      },
+      onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+              alert('Transaction completed by ' + details.payer.name.given_name + '!');
+          });
+      }
+  }).render('#paypal-button-container');
+</script>
+</form>
+
   </div>
 
 
