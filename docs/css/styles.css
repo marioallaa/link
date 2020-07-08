@@ -50,6 +50,8 @@ Colors:
 .user-buttons {
     padding: 46px;
     border-radius: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .user-buttons:hover {
