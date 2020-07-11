@@ -50,11 +50,24 @@ Colors:
 .user-buttons {
     padding: 46px;
     border-radius: 0.5rem;
+    margin-top: 19px;
+    margin-bottom: 19px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .user-buttons:hover {
+    transition: all .2s ease-in-out;
+    transform: scale(1.36);
+    box-shadow: 2px 2px 2px 2px #0000002a;
+}
+
+.user-fab {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user-fab:hover {
     transition: all .2s ease-in-out;
     transform: scale(1.16);
     box-shadow: 2px 2px 2px 2px #0000002a;

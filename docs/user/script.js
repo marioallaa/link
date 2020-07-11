@@ -1,5 +1,5 @@
-$('.button-collapse').sideNav();
+(function($) {
+    "use strict";
 
-$('.collapsible').collapsible();
 
-$('select').material_select();
+})(jQuery);
