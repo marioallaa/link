@@ -33,9 +33,9 @@
 	<link href="/css/styles.css" rel="stylesheet">
 
 	<!-- Favicon  -->
-    <link rel="icon" href="images/logo-b.png">
+    <link rel="icon" href="/images/logo-b.png">
     <STYLE>
-      A {text-decoration: none;} 
+      A {text-decoration: none;}
       .center{
       width: %100;
       display: flex;
@@ -140,14 +140,14 @@
               <h3><b>User Managment</b></h3>
             </div>
           <div class="row center" >
-            <a class="popup-with-move-anim col centered col" style="padding: 30px;" href="#settings">
+            <a class="popup-with-move-anim col centered col" style="padding: 30px;" href="#cardData1">
               <div class="white user-buttons border lighten-3 col s12 waves-effect">
                 <i class="indigo-text text-lighten-1 large material-icons">perm_identity</i>
                 <span class="indigo-text text-lighten-1"><h5>Settings</h5></span>
               </div>
             </a>
 
-            <a class="popup-with-move-anim col centered col" href="#pay" style="padding: 30px;">
+            <a class="popup-with-move-anim col centered col" href="#pay344" style="padding: 30px;">
               <div  class="white border lighten-3 col user-buttons s12 waves-effect">
                 <i class="indigo-text text-lighten-1 large material-icons">payment</i>
                 <span class="indigo-text text-lighten-1"><h5>Subsription</h5></span>
@@ -168,21 +168,54 @@
       </div>
   </main>
 
-<div id="lightBoxContainer">
-	<div id="settings"  class="lightbox-user zoom-anim-dialog mfp-hide">
-        <iframe src="accsettings.html" style="width: 100%; height:712px; border-width:0px"> </iframe>
+  <div id="lightBoxContainer">
+    <div id="settings"  class="lightbox-user zoom-anim-dialog mfp-hide" style="padding:69px;">
+        <form id="my-form" novalidate="novalidate">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="form-title">Pop-up form ${cardID}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required="">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email">E-mail</label>
+                <input type="text" class="form-control" id="email" name="email" required="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required="">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email">E-mail</label>
+                <input type="text" class="form-control" id="email" name="email" required="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="something">Something</label>
+                <textarea name="something" class="form-control" id=""></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn send-form">Send</button>
+    </form>
+    </div>
+    <div id="pay344"  class="lightbox-user zoom-anim-dialog mfp-hide">
+          <iframe src="accsettings.html" style="width: 100%; height:712px; border-width:0px"> </iframe>
+    </div>
+
+
+<script>
+
+</script>
+
+
   </div>
-	<div id="pay"  class="lightbox-user zoom-anim-dialog mfp-hide">
-        <iframe src="accsettings.html" style="width: 100%; height:712px; border-width:0px"> </iframe>
-  </div>
-
-
-
-
-
-</div>
-
-
     <!-- Footer -->
     <svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 79"><defs><style>.cls-2{fill:#000000;}</style></defs><title>footer-frame</title><path class="cls-2" d="M0,72.427C143,12.138,255.5,4.577,328.644,7.943c147.721,6.8,183.881,60.242,320.83,53.737,143-6.793,167.826-68.128,293-60.9,109.095,6.3,115.68,54.364,225.251,57.319,113.58,3.064,138.8-47.711,251.189-41.8,104.012,5.474,109.713,50.4,197.369,46.572,89.549-3.91,124.375-52.563,227.622-50.155A338.646,338.646,0,0,1,1920,23.467V79.75H0V72.427Z" transform="translate(0 -0.188)"/></svg>
     <div class="footer">
@@ -251,7 +284,6 @@
     <script src="/js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
     <script src="/js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
     <script src="/js/scripts.js"></script> <!-- Custom scripts -->
-    <script src="script.js"></script> <!-- Custom scripts -->
 </body>
   <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js'></script><script  src="./script.js"></script>
