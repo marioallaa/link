@@ -5,6 +5,23 @@
 */
 
 
+
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyAgGjB3QQWTcMmq_ji5BJUuHiAvbrJJet4",
+    authDomain: "ogierio.firebaseapp.com",
+    databaseURL: "https://ogierio.firebaseio.com",
+    projectId: "ogierio",
+    storageBucket: "ogierio.appspot.com",
+    messagingSenderId: "864816377235",
+    appId: "1:864816377235:web:01ccdc38c2ca9117aa8c66",
+    measurementId: "G-BNP5JS58NJ"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+
 (function($) {
     "use strict";
 
@@ -191,7 +208,6 @@
             password: password
 
         }
-        console.log(data);
         $.ajax({
             type: "POST",
             url: baseURL + "auth/register",
@@ -206,7 +222,6 @@
                         url: baseURL + "auth/login",
                         data: d,
                         success: function(text) {
-                            console.log(text)
                             if (text.access_token != null) {
                                 localStorage.setItem('token', text.access_token)
                                 sformSuccess();
@@ -267,13 +282,11 @@
         var username = $("#lemail").val();
         var password = $("#lpassword").val();
         var d = { username: username, password: password }
-        console.log(d);
         $.ajax({
             type: "POST",
             url: baseURL + "auth/login",
             data: d,
             success: function(text) {
-                console.log(text)
                 if (text.access_token != null) {
                     localStorage.setItem('token', text.access_token)
                     lformSuccess();
