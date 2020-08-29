@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="theme-color" content="#000000">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="Welcome to ogier.io the business card of the future.">
+        <meta name="author" content="Ogier.io">
+
+        <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+        <meta property="og:site_name" content="OGIERcards" />
+        <!-- website name -->
+        <meta property="og:site" content="ogier.io" />
+        <!-- website link -->
+        <meta property="og:title" content="OGIER Business Cards" />
+        <!-- title shown in the actual shared post -->
+        <meta property="og:description" content="Order your ogier business card pack and let peopple know that your company cares about the environment and get insights on the use of your Ogier Card.  " />
+        <!-- description shown in the actual shared post -->
+        <meta property="og:image" content="/images/logo-b.png" />
+        <!-- image link, make sure it's jpg -->
+        <meta property="og:url" content="ogier.io" />
+        <!-- where do you want your post to link to -->
+        <meta property="og:type" content="article" />
+
+        <!-- Website Title -->
+        <title> New Order | OGIER</title>
+
+        <!-- Styles -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
+        <link href="/css/bootstrap.css" rel="stylesheet">
+        <link href="/css/fontawesome-all.css" rel="stylesheet">
+        <link href="/css/swiper.css" rel="stylesheet">
+        <link href="/css/magnific-popup.css" rel="stylesheet">
+        <link href="/css/styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+
+        </style>
+        <!-- Favicon  -->
+        <link rel="icon" href="/images/logo-b.png">
+    </head>
+
+    <body style="background-color: black; height: auto;">
+
+
+
+        <!-- Preloader -->
+        <div class="spinner-wrapper">
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+        <!-- end of preloader -->
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top col col-md-12">
+            <div class="container">
+                <!-- Image Logo -->
+                <a style=" text-decoration: none;" href="/index.html#header">
+                    <h1 style="color:white;"> OGIER </h1>
+                </a>
+                <!-- Mobile Menu Toggle Button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-awesome fas fa-bars"></span>
+                <span class="navbar-toggler-awesome fas fa-times"></span>
+            </button>
+                <!-- end of mobile menu toggle button -->
+
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav ml-auto" style="display: flex; align-items: center; justify-content: center;">
+                        <span class="nav-item" style="display: flex; align-items: center; justify-content: center;">
+                    <a class="btn-outline-sm"href="/user" style="padding: 7px"> <i class="fa fa-dashboard" style="font-size: 14px; height:14px !Important ; margin: 0px"> </i>  Dashboard</a>
+                </span>
+                        <span class="nav-item" style="display: flex; align-items: center; justify-content: center;">
+                    <a class="btn-outline-sm" onClick="LetMeOUT();">Log Out</a>
+                </span>
+                    </ul>
+                </div>
+            </div>
+            <!-- end of container -->
+        </nav>
+        <!-- end of navbar -->
+        <!-- end of navigation -->
+
+        <div class="container-2" style="padding-top: 12em ">
+            <div>
+                <div id="" class="ex-2-header" style="padding-top:0px!important; min-height: 0px;">
+                    <div class="container" style="padding-top: 18px ">
+                        <div class="row">
+                            <div class="col-lg-12" style="padding:9px;">
+                                <!-- Sign Up Form -->
+                                <div class="form-container" style="max-width:100% !important;">
+                                    <form id="signUpForm1" data-toggle="validator" data-focus="false">
+                                        <div class="form-group">
+                                            <h3> Shipping Address </h3>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control-input" id="l1" required>
+                                            <label class="label-control" id="forl1" for="l1">Line 1*</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control-input" id="l2" required>
+                                            <label class="label-control" id="forl2" for="l2">Line 2*</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group  col-md-4">
+                                                <input type="text" class="form-control-input" id="city" required>
+                                                <label class="label-control" id="forcity" for="city">City</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group  col-md-4">
+                                                <input type="text" class="form-control-input" id="country" required>
+                                                <label class="label-control" id="forcountry" for="country">Country</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group  col-md-4">
+                                                <input type="text" class="form-control-input" id="zip" required>
+                                                <label class="label-control" id="forzip" for="zip">ZIP Code</label>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control-input" id="phone" required>
+                                            <label class="label-control" id="forphone" for="phone">Phone*</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="d" class="ex-2-header" style="padding-top:0px!important; min-height: 0px;">
+
+                    <!-- end of container -->
+                </div>
+
+
+                <!-- end of ex-2-header -->
+            </div>
+            <div>
+                <div class="ex-2-header" id="company" style="padding-top:0px!important; min-height: 0px;">
+                    <div class="form-group" style="display: flex; align-items: center; justify-content: center;">
+                        <div class="img-wrapper row">
+                            <img class="img-fluid" src="/images/logo-w.png" alt="alternative">
+                        </div>
+                        <!-- end of img-wrapper -->
+                    </div>
+
+
+                </div>
+                <div class="row" data-toggle="validator" data-focus="false" style="padding-top: 75px;display: flex; align-items: center; justify-content: center;">
+                    <div id="nxt" style="width:100%; display: flex; align-items: center; justify-content: center;">
+                        <div class="row" style=" " style="display: flex; align-items: center; justify-content: center;">
+                            <p class="col-md-9" id="cnotif" style="color:#ddd; margin-top: 23px"> The above information is required for registration.</p>
+                            <div class="col-md-3">
+                                <button type="button" onClick="cont()" style="color: black;  height:54px; width: 150px; border-radius: 25px;" class="btn white save-update col-md-11 send-form">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <input type="text" id="control" hidden>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
+        <script src="/js/jquery.min.js"></script>
+        <!-- jQuery for Bootstrap's JavaScript plugins -->
+        <script src="/js/popper.min.js"></script>
+        <!-- Popper tooltip library for Bootstrap -->
+        <script src="/js/bootstrap.min.js"></script>
+        <!-- Bootstrap framework -->
+        <script src="/js/jquery.easing.min.js"></script>
+        <!-- jQuery Easing for smooth scrolling between anchors -->
+        <script src="/js/swiper.min.js"></script>
+        <!-- Swiper for image and text sliders -->
+        <script src="/js/jquery.magnific-popup.js"></script>
+        <!-- Magnific Popup for lightboxes -->
+        <script src="/js/validator.min.js"></script>
+        <!-- Validator.js - Bootstrap plugin that validates forms -->
+        <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-storage.js"></script>
+        <script src="/js/requiresLogin.js"></script>
+        <!-- Validator.js - Bootstrap plugin that validates forms -->
+        <script src="/js/scripts.js"></script>
+        <!-- Custom scripts -->
+        <script src="/js/user.js"></script>
+        <!-- Custom scripts -->
+        <script src="/js/order.js"></script>
+        <!-- Validator.js - Bootstrap plugin that validates forms -->
+
+
+        <script>
+            var bAcc = false;
+
+            function cont() {
+                let go = false;
+                let d = {};
+                if ($('#l1').val() === $('#control').val()) {
+                    document.getElementById('forl1').innerHTML = 'Address Line 1 is required*';
+                    document.getElementById('forl1').style.color = "red";
+                    go = false;
+                } else {
+                    d.addLine1 = $('#l1').val();
+                    go = true;
+                }
+                if ($('#l2').val() === $('#control').val()) {
+                    d.addLine2 = null
+                } else {
+                    d.addLine2 = $('#l2').val();
+                }
+                if ($('#city').val() === $('#control').val()) {
+                    document.getElementById('forcity').innerHTML = 'City is required*';
+                    document.getElementById('forcity').style.color = "red";
+                    go = false;
+                } else {
+                    go = true;
+                    d.city = $('#city').val();
+                }
+                if ($('#country').val() === $('#control').val()) {
+                    document.getElementById('forcountry').innerHTML = 'Country is required*';
+                    document.getElementById('forcountry').style.color = "red";
+                    go = false;
+                } else {
+                    go = true;
+                    d.country = $('#country').val();
+                }
+                if ($('#zip').val() === $('#control').val()) {
+                    document.getElementById('forzip').innerHTML = 'ZIP Code is required*';
+                    document.getElementById('forzip').style.color = "red";
+                    go = false;
+                } else {
+                    go = true;
+                    d.zip = $('#zip').val();
+                }
+                if ($('#phone').val() === $('#control').val()) {
+                    document.getElementById('forphone').innerHTML = 'Phone number is required*';
+                    document.getElementById('forphone').style.color = "red";
+                    go = false;
+                } else {
+                    go = true;
+                    d.phone = $('#phone').val();
+                }
+
+                if (bAcc) {
+                    if ($('#businessName').val() === $('#control').val()) {
+                        document.getElementById('forBusinessName').innerHTML = 'Country is required*';
+                        document.getElementById('forBusinessName').style.color = "red";
+                        go = false;
+                    } else {
+                        go = true;
+                        d.country = $('#businessName').val();
+                    }
+                    if ($('#zip').val() === $('#control').val()) {
+                        document.getElementById('forzip').innerHTML = 'ZIP Code is required*';
+                        document.getElementById('forzip').style.color = "red";
+                        go = false;
+                    } else {
+                        go = true;
+                        d.zip = $('#zip').val();
+                    }
+                    if ($('#phone').val() === $('#control').val()) {
+                        document.getElementById('forphone').innerHTML = 'Phone number is required*';
+                        document.getElementById('forphone').style.color = "red";
+                        go = false;
+                    } else {
+                        go = true;
+                        d.phone = $('#phone').val();
+                    }
+                    if ($('#category').val() === $('#control').val()) {
+                        d.addLine2 = null
+                    } else {
+                        d.addLine2 = $('#category').val();
+                    }
+                }
+
+                if (go) {
+                    console.log(d);
+                    update(d);
+                }
+
+
+            }
+
+            function update(d) {
+                fetch(baseURL + "who/am/i", {
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('token')
+                        },
+                    }).then(response => response.json())
+                    .then(u => {
+                        l = {
+                            name: u.name,
+                            username: u.username,
+                            surname: u.surname,
+                            email: u.email,
+                            id: u.id,
+                            role: u.role,
+                            phone: d.phone,
+                            addLine1: d.addLine1,
+                            addLine2: d.addLine2,
+                            accountType: u.accountType,
+                            city: d.city,
+                            country: d.country,
+                            zipCode: d.zip,
+                        };
+                        (function($) {
+                            "use strict";
+                            $.ajax({
+                                type: "POST",
+                                headers: {
+                                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                                },
+                                url: baseURL + "user/update",
+                                data: l,
+                                success: function(text) {
+                                    document.location.href = '/user'
+                                }, //document.location.href = json.gotoLink },
+                                error: function(error) {
+                                    console.log('error', error)
+                                }
+                            });
+                        })(jQuery);
+
+                    })
+                    .catch(error => console.log('error', error))
+
+            }
+
+            function isBusiness() {
+                document.getElementById("company").innerHTML = `
+                <div class="container" style="padding-top: 18px;">
+                        <div class="row">
+                            <div class="col-lg-12" style="padding:9px;">
+                                <!-- Sign Up Form -->
+                                <div class="form-container" style="max-width:100% !important;">
+                                    <form id="signUpForm2" data-toggle="validator" data-focus="false">
+                                        <div class="form-group">
+                                            <h3> Register your Company </h3>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control-input" id="businessName" required>
+                                            <label class="label-control" id="forBusinessName" for="businessName">Company name</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control-input" id="category" required>
+                                            <label class="label-control" id="forCategory" for="category">Category</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control-input" id="category" required>
+                                            <label class="label-control" id="forCategory" for="category">Category</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control-input" id="moto" required>
+                                            <label class="label-control"  for="moto">Catch Line</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- end of form container -->
+                                <!-- end of sign up form -->
+
+                            </div>
+                            <!-- end of col -->
+                        </div>
+                        <!-- end of row -->
+                    </div>`;
+            }
+
+            fetch(baseURL + "who/am/i", {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    },
+                }).then(response => response.json())
+                .then(u => {
+                    (function($) {
+                        "use strict";
+                        if (u.accountType === 'Business') {
+                            bAcc = true;
+                            isBusiness();
+                        }
+                    })(jQuery);
+
+                })
+                .catch(error => console.log('error', error))
+        </script>
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js'></script>
+
+</html>

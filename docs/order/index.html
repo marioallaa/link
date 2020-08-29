@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="theme-color" content="#000000">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="Welcome to ogier.io the business card of the future.">
+        <meta name="author" content="Ogier.io">
+
+        <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+        <meta property="og:site_name" content="OGIERcards" />
+        <!-- website name -->
+        <meta property="og:site" content="ogier.io" />
+        <!-- website link -->
+        <meta property="og:title" content="OGIER Business Cards" />
+        <!-- title shown in the actual shared post -->
+        <meta property="og:description" content="Order your ogier business card pack and let peopple know that your company cares about the environment and get insights on the use of your Ogier Card.  " />
+        <!-- description shown in the actual shared post -->
+        <meta property="og:image" content="/images/logo-b.png" />
+        <!-- image link, make sure it's jpg -->
+        <meta property="og:url" content="ogier.io" />
+        <!-- where do you want your post to link to -->
+        <meta property="og:type" content="article" />
+
+        <!-- Website Title -->
+        <title> New Order | OGIER</title>
+
+        <!-- Styles -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
+        <link href="/css/bootstrap.css" rel="stylesheet">
+        <link href="/css/fontawesome-all.css" rel="stylesheet">
+        <link href="/css/swiper.css" rel="stylesheet">
+        <link href="/css/magnific-popup.css" rel="stylesheet">
+        <link href="/css/styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+
+        </style>
+        <!-- Favicon  -->
+        <link rel="icon" href="/images/logo-b.png">
+    </head>
+
+    <body style="background-color: black; height: auto;">
+
+
+
+        <!-- Preloader -->
+        <div class="spinner-wrapper">
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+        <!-- end of preloader -->
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top col col-md-12">
+            <div class="container">
+                <!-- Image Logo -->
+                <a style=" text-decoration: none;" href="/index.html#header">
+                    <h1 style="color:white;"> OGIER </h1>
+                </a>
+                <!-- Mobile Menu Toggle Button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-awesome fas fa-bars"></span>
+                <span class="navbar-toggler-awesome fas fa-times"></span>
+            </button>
+                <!-- end of mobile menu toggle button -->
+
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav ml-auto" style="display: flex; align-items: center; justify-content: center;">
+                        <span class="nav-item" style="display: flex; align-items: center; justify-content: center;">
+                    <a class="btn-outline-sm"href="/user" style="padding: 7px"> <i class="fa fa-dashboard" style="font-size: 14px; height:14px !Important ; margin: 0px"> </i>  Dashboard</a>
+                </span>
+                        <span class="nav-item" style="display: flex; align-items: center; justify-content: center;">
+                    <a class="btn-outline-sm" onClick="LetMeOUT();">Log Out</a>
+                </span>
+                    </ul>
+                </div>
+            </div>
+            <!-- end of container -->
+        </nav>
+        <!-- end of navbar -->
+        <!-- end of navigation -->
+
+        <div class="container-1">
+            <div id="" class="ex-2-header" style="padding-top:0px!important; min-height: 0px;">
+                <div class="container" style="padding-top: 18px ">
+                    <div class="row">
+                        <div class="col-lg-12" style="padding:9px;">
+                            <!-- Sign Up Form -->
+                            <div class="form-container" style="max-width:100% !important; height:400px;">
+                                <form id="signUpForm1" data-toggle="validator" data-focus="false">
+                                    <div class="form-group">
+                                        <h3> New Ogier Card </h3>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col col-md-6">
+                                            <input type="text" class="form-control-input" id="cname" required>
+                                            <label class="label-control" id="forname" for="cname">Name*</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group col col-md-6">
+                                            <input type="text" class="form-control-input" id="csurname" required>
+                                            <label class="label-control" id="forsurname" for="csurname">Surname*</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control-input" id="ccompany" required>
+                                        <label class="label-control" id="forcompany" for="ccompany">Company*</label>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control-input" id="ctitle" required>
+                                        <label class="label-control" id="forposition" for="ctitle">Position*</label>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control-input" id="cphone" required>
+                                        <label class="label-control" id="forphone" for="cphone">Phone*</label>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- end of form container -->
+                            <!-- end of sign up form -->
+
+                        </div>
+                        <!-- end of col -->
+                    </div>
+                    <!-- end of row -->
+                </div>
+                <!-- end of container -->
+            </div>
+            <!-- end of ex-2-header -->
+
+            <div class="ex-2-header" style="padding-top:0px!important; min-height: 0px;">
+                <div class="container " style="padding-top: 18px ">
+                    <div class="row">
+                        <div class="col-lg-12" style="padding:9px;">
+                            <div class="form-container" style="max-width:100% !important; height:400px;">
+                                <form id="signUpForm3" data-toggle="validator" data-focus="false">
+                                    <div class="form-group">
+                                        <h3> Card Design </h3>
+                                    </div>
+                                    <div class="form-group  drop-here0 " id="dragNdrop" style="display: flex; align-items: center; justify-content: center;">
+                                        <div class="img-wrapper">
+                                            <img class="img-fluid" style="height: 196px" src="/images/logo-b.png" alt="alternative">
+                                        </div>
+                                        <!-- end of img-wrapper -->
+                                    </div>
+                                    <div class="form-group" id='designConfirm'>
+                                        <input type="file" class="form-control-input" id="cdesign" required style="border-width:0px;background-color:transparent;">
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- end of form container -->
+                            <!-- end of sign up form -->
+
+                        </div>
+                        <!-- end of col -->
+                    </div>
+                    <!-- end of row -->
+                </div>
+                <!-- end of container -->
+            </div>
+
+            <div id="" class="ex-2-header" style="padding-top:0px!important; min-height: 0px;">
+                <div class="container" style=" ">
+                    <div class="row">
+                        <div class="col-lg-12" style="padding:9px;">
+                            <!-- Sign Up Form -->
+                            <div class="form-container" style="max-width:100% !important; height:330px;">
+                                <form id="signUpForm2" data-toggle="validator" data-focus="false">
+                                    <div class="form-group">
+                                        <h3> Social Links </h3>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control-input" id="cLandingPage" required>
+                                        <label class="label-control" for="cLandingPage">Landing Page URL</label>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col col-md-6">
+                                            <input type="text" class="form-control-input" id="cfb" required>
+                                            <label class="label-control" for="cfb">Facebook</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group col col-md-6">
+                                            <input type="text" class="form-control-input" id="cig" required>
+                                            <label class="label-control" for="cig">Instagram</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col col-md-6">
+                                            <input type="text" class="form-control-input" id="cln" required>
+                                            <label class="label-control" for="cln">LinkedIn</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group col col-md-6">
+                                            <input type="text" class="form-control-input" id="ctw" required>
+                                            <label class="label-control" for="ctw">Twitter</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- end of form container -->
+                            <!-- end of sign up form -->
+
+                        </div>
+                        <!-- end of col -->
+                    </div>
+                    <!-- end of row -->
+                </div>
+                <!-- end of container -->
+            </div>
+
+            <div class="ex-2-header" style="padding-top:0px!important; min-height: 0px;">
+                <div class="container" style="; ">
+                    <div class="row">
+                        <div class="col-lg-12" style="padding:9px;">
+                            <!-- Sign Up Form -->
+                            <div class="form-container" style="max-width:100% !important; min-height:330px;">
+                                <div class="form-group">
+                                    <h3> Chose Your Plan </h3>
+                                </div>
+                                <form id="signUpForm" data-toggle="validator" data-focus="false" style="padding-top: 75px;display: flex; align-items: center; justify-content: center;">
+                                    <div id="nxt" style="width:100%; display: flex; align-items: center; justify-content: center;">
+                                        <div class="row" style=" " style="display: flex; align-items: center; justify-content: center;">
+                                            <p class="col-md-9" id="cnotif" style="color:#aaa; margin-top:9px"> Click Next After you have completely filled all the data and ploaded an acceptable design.</p>
+                                            <div class="col-md-3">
+                                                <button type="button" onClick="next()" style="color: white;  height:54px; width: 200px; border-radius: 25px;" class="btn black save-update col-md-11 send-form">NEXT</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- -->
+                                    </div>
+                            </div>
+
+
+                            </form>
+                        </div>
+                        <!-- end of form container -->
+                        <!-- end of sign up form -->
+
+                    </div>
+                    <!-- end of col -->
+                </div>
+                <!-- end of row -->
+            </div>
+            <!-- end of container -->
+        </div>
+        </div>
+
+
+        <input type="text" id="control" hidden>
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
+        <script src="/js/jquery.min.js"></script>
+        <!-- jQuery for Bootstrap's JavaScript plugins -->
+        <script src="/js/popper.min.js"></script>
+        <!-- Popper tooltip library for Bootstrap -->
+        <script src="/js/bootstrap.min.js"></script>
+        <!-- Bootstrap framework -->
+        <script src="/js/jquery.easing.min.js"></script>
+        <!-- jQuery Easing for smooth scrolling between anchors -->
+        <script src="/js/swiper.min.js"></script>
+        <!-- Swiper for image and text sliders -->
+        <script src="/js/jquery.magnific-popup.js"></script>
+        <!-- Magnific Popup for lightboxes -->
+        <script src="/js/validator.min.js"></script>
+        <!-- Validator.js - Bootstrap plugin that validates forms -->
+        <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-storage.js"></script>
+        <script src="/js/requiresLogin.js"></script>
+        <!-- Validator.js - Bootstrap plugin that validates forms -->
+        <script src="/js/scripts.js"></script>
+        <!-- Custom scripts -->
+        <script src="/js/user.js"></script>
+        <!-- Custom scripts -->
+        <script src="/js/order.js"></script>
+        <!-- Validator.js - Bootstrap plugin that validates forms -->
+
+
+        <script>
+            // ************************ Drag and drop ***************** //
+            var dropArea = document.getElementById("dragNdrop");
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, preventDefaults, false)
+                document.body.addEventListener(eventName, preventDefaults, false)
+            });
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropArea.addEventListener(eventName, highlight, false)
+            });
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, unhighlight, false)
+            });
+            dropArea.addEventListener('drop', handleDrop, false)
+
+            function preventDefaults(e) {
+                e.preventDefault()
+                e.stopPropagation()
+            }
+
+            function highlight(e) {
+                dropArea.classList.add('highlight')
+            }
+
+            function unhighlight(e) {
+                dropArea.classList.remove('highlight')
+            }
+
+
+            function nextIndividual() {
+                document.getElementById("nxt").innerHTML = `
+                                <form class=" justify-content-center" style="padding-top:32px;">
+                                    <div class="row" style="width:100%; display: flex; align-items: center; justify-content: center;">
+                                        <div class="col-md-4">
+                                            <button type="button" onClick="payForCard(1)" style="border-radius: 25px;color: white;  height:54px;" class="btn black save-update col-md-11 send-form">ONE TIME 9.99 €</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" onClick="payForCard(2)" style="border-radius: 25px;color: white;  height:54px;" class="btn black save-update col-md-11 send-form"> Silver 0.99 €/mo</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" onClick="payForCard(3)" style="border-radius: 25px;color: white;  height:54px;" class="btn black save-update col-md-11 send-form"> Gold 2.99 €/mo </button>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding:20px">
+                                    </div>
+                                </form>`;
+            }
+
+            function nextBusiness() {
+                document.getElementById("nxt").innerHTML = `
+                                <form class=" justify-content-center" style="padding-top:32px;">
+                                    <div class="row"  style="width:100%; display: flex; align-items: center; justify-content: center;">
+                                        <div class="col-md-4">
+                                            <button type="button" onClick="payForCard(4)" style="border-radius: 25px;color: white; height:54px;" class="btn black save-update col-md-11 send-form"> Silver 12.0 €/mo</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" onClick="payForCard(5)" style="border-radius: 25px;color: white; height:54px;" class="btn black save-update col-md-11 send-form"> Gold 24.0 €/mo</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" onClick="payForCard(6)" style="border-radius: 25px;color: white; height:54px;" class="btn black save-update col-md-11 send-form"> Diamond 36.0 €/mo </button>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding:20px">
+                                    </div>
+                                </form>`;
+            }
+
+            const getDeviceType = () => {
+                const ua = navigator.userAgent;
+                if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+                    return "tablet";
+                }
+                if (
+                    /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+                        ua
+                    )
+                ) {
+                    return "mobile";
+                }
+                return "desktop";
+            };
+        </script>
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js'></script>
+
+</html>

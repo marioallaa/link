@@ -19,13 +19,11 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-
+// firebase.analytics();
 
 (function($) {
     "use strict";
-
-    var baseURL = "http://localhost:3000/"
+    var baseURL = "http://" + window.location.host + "/";
 
     /* Preloader */
     $(window).on('load', function() {
@@ -182,7 +180,7 @@ firebase.analytics();
         if (event.isDefaultPrevented()) {
             // handle the invalid form...
             sformError();
-            ssubmitMSG(false, "Please fill all fields!");
+            ssubmitMSG(false, "This field is required!");
         } else {
             // everything looks good!
             event.preventDefault();
@@ -192,11 +190,16 @@ firebase.analytics();
 
     function ssubmitForm() {
         // initiate variables with form content
+        var hashObj = new jsSHA("SHA-512", "TEXT", { numRounds: 1 });
         var email = $("#semail").val();
         var name = $("#sname").val();
         var surname = $("#ssurname").val();
         var username = $("#suname").val();
         var password = $("#spassword").val();
+        var type = $("#sType").val();
+        hashObj.update(password);
+        password = hashObj.getHash("HEX");
+
         var terms = $("#sterms").val();
 
         var data = {
@@ -205,7 +208,8 @@ firebase.analytics();
             role: 1,
             surname: surname,
             username: username,
-            password: password
+            password: password,
+            accountType: type,
 
         }
         $.ajax({
@@ -222,7 +226,7 @@ firebase.analytics();
                         url: baseURL + "auth/login",
                         data: d,
                         success: function(text) {
-                            if (text.access_token != null) {
+                            if (text.access_token != null || text.access_token != undefined) {
                                 localStorage.setItem('token', text.access_token)
                                 sformSuccess();
                                 setTimeout(function() {
@@ -238,13 +242,17 @@ firebase.analytics();
                     sformError();
                     ssubmitMSG(false, "This username is taken")
                 }
+            },
+            error: function(text) {
+                sformError();
+                ssubmitMSG(false, "Couldn't establish a connection.")
             }
         });
     }
 
     function sformSuccess() {
         $("#signUpForm")[0].reset();
-        ssubmitMSG(true, "Sign Up Submitted!");
+        ssubmitMSG(true, "Submitted");
         $("input").removeClass('notEmpty'); // resets the field label after submission
     }
 
@@ -281,6 +289,10 @@ firebase.analytics();
         // initiate variables with form content
         var username = $("#lemail").val();
         var password = $("#lpassword").val();
+        var hashObj = new jsSHA("SHA-512", "TEXT", { numRounds: 1 });
+        hashObj.update(password);
+        password = hashObj.getHash("HEX");
+
         var d = { username: username, password: password }
         $.ajax({
             type: "POST",
@@ -297,6 +309,10 @@ firebase.analytics();
                     lformError();
                     lsubmitMSG(false, text);
                 }
+            },
+            error: function(text) {
+                sformError();
+                ssubmitMSG(false, "Couldn't establish a connection.")
             }
         });
     }
@@ -340,17 +356,17 @@ firebase.analytics();
         // initiate variables with form content
         var email = $("#nemail").val();
         var terms = $("#nterms").val();
+        var d = { msg: `${email} wants to subscribe to your news letter, ${terms}` }
+        console.log(d);
         $.ajax({
             type: "POST",
-            url: "php/newsletterform-process.php",
-            data: "email=" + email + "&terms=" + terms,
+            url: baseURL + "telegram/send/msg",
+            data: d,
             success: function(text) {
-                if (text == "success") {
-                    nformSuccess();
-                } else {
-                    nformError();
-                    nsubmitMSG(false, text);
-                }
+                nformSuccess();
+            },
+            error: function(text) {
+                nformError();
             }
         });
     }

@@ -4,37 +4,150 @@
 var storage = firebase.storage();
 var storageRef = storage.ref();
 var designs = storageRef.child('designs');
-var baseURL = "http://localhost:3000/";
+var baseURL = "http://" + window.location.host + "/";
+console.log(baseURL);
+var allMyCardIds = []
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + localStorage.getItem('token')
+}
 
 function LetMeOUT() {
     localStorage.setItem('token', null);
     document.location.href = "/auth/login/";
 }
 
+function checkStatusCard(id) {
+    fetch(baseURL + 'card/check/status/' + id, { headers }).then(
+        (d) => {
+            getData();
+        }
+    )
+}
+
 (function($) {
     "use strict";
+    var k = 0;
 
-    function cardTableRow(c, i) {
-        console.log(c, i)
-        if (c.plan === 0) return;
-        return `
-        <tr onclick="generateCard(${c.id}, 0);">
-            <td>${i}</td>
-            <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
-            <td>${Date()}</td>
+    function cardTableRow(c) {
+        console.log(c.status);
+        if (c.status != 'ACTIVE' && c.status != '!ACTIVE' && c.plan != 0 && c.plan != 9) return `
+        <tr  onclick=checkStatusCard(${c.id})>
+            <td>${k = k + 1}</td>
+            <td>${c.name + " " + c.surname} | <a onclick=checkStatusCard(${c.id})>
+                <i class="badge-pill align-self-center" style="text-align: center; color: white;font-size: 15px;  background-color: #ee0000;  padding-bottom:2px;">
+                    Check Status
+                </i></a></td>
+            <td>${c.timeCreated.slice(3, 21)}  </td>
             <td style="text-align: center;">
-                <b class="badge-pill align-self-center" style="text-align: center; color: white;font-size: 15px;  background-color: #00aa00;  padding-bottom:2px;">
-                    Business
-                </b>
+                <i class="badge-pill align-self-center" style="text-align: center; color: white;font-size: 15px;  background-color: #800080;  padding-bottom:2px;">
+                    Waiting..
+                </i>
+            </td>
+        </tr> <tr  class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id=""></div></td> </tr>`;
+        if (c.plan === 0) return;
+        if (c.plan == 1) return `
+        <tr onclick="generateForBasicCard(${c.id})">
+            <td>${k = k + 1}</td>
+            <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
+            <td>${c.timeCreated.slice(3, 21)} </td>
+            <td style="text-align: center;">
+                <i class="badge-pill align-self-center" style="text-align: center; color: black;font-size: 15px;  background-color: ;  padding-bottom:2px;">
+                    Basic
+                </i>
+            </td>
+        </tr>
+        <tr class="white">
+        <td class="col-md-12" colspan="4">
+      <div class="col col-md-12" id="cardContainer${c.id}" style="display: flex; align-items: center; justify-content: center;"></div></td>
+                </tr>`;
+        if (c.plan == 2 && c.status != '!ACTIVE') return `
+        <tr onclick="generateCard(${c.id}, 0);">
+            <td>${k = k + 1}</td>
+            <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
+            <td>${c.timeCreated.slice(3, 21)} </td>
+            <td style="text-align: center;">
+                <i class="badge-pill align-self-center" style="text-align: center; color: black;font-size: 15px;  background-color: #C0C0C0;  padding-bottom:2px;">
+                    Silver
+                </i>
+            </td>
+        </tr>
+        <tr class="white">
+            <td class="col-md-12" colspan="4">
+                <div class="col col-md-12" id="cardContainer${c.id}"></div>
             </td>
         </tr>`
+        if (c.plan == 3 && c.status != '!ACTIVE') return `
+        <tr onclick="generateCard(${c.id}, 0);">
+            <td>${k = k + 1}</td>
+            <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
+            <td>${c.timeCreated.slice(3, 21)} </td>
+            <td style="text-align: center;">
+                <i class="badge-pill align-self-center" style="text-align: center; color: black;font-size: 15px;  background-color: #FFD700;  padding-bottom:2px;">
+                    Gold
+                </i>
+            </td>
+        </tr> <tr class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+        if (c.plan === 4 && c.status != '!ACTIVE') return `
+        <tr onclick="generateCard(${c.id}, 0);">
+            <td>${k = k + 1}</td>
+            <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
+            <td>${c.timeCreated.slice(3, 21)} </td>
+            <td style="text-align: center;">
+                <i class="badge-pill align-self-center" style="text-align: center; color: black;font-size: 15px;  background-color: #C0C0C0;  padding-bottom:2px;">
+                    Silver
+                </i>
+            </td>
+        </tr> <tr class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+        if (c.plan === 5 && c.status != '!ACTIVE') return `
+        <tr onclick="generateCard(${c.id}, 0);">
+            <td>${k = k + 1}</td>
+            <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
+            <td>${c.timeCreated.slice(3, 21)} </td>
+            <td style="text-align: center;">
+                <i class="badge-pill align-self-center" style="text-align: center; color: black;font-size: 15px;  background-color: #FFD700;  padding-bottom:2px;">
+                    Gold
+                </i>
+            </td>
+        </tr> <tr class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+        if (c.plan === 6 && c.status != '!ACTIVE') return `
+        <tr onclick="generateCard(${c.id}, 0);">
+            <td>${k = k + 1}</td>
+            <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
+            <td>${c.timeCreated.slice(3, 21)} </td>
+            <td style="text-align: center;">
+                <i class="badge-pill align-self-center" style="text-align: center; color: black;font-size: 15px;  background-color: #00ff00;  padding-bottom:2px;">
+                    Diamond
+                </i>
+            </td>
+        </tr> <tr class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+        if (c.status == '!ACTIVE') return `
+        <tr onclick="generateForDeactivatedCard(${c.id}, 0);">
+            <td>${k = k + 1}</td>
+            <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
+            <td>${c.timeCreated.slice(3, 21)} </td>
+            <td style="text-align: center;">
+            <i class="badge-pill align-self-center" style="text-align: center; color: white;font-size: 15px;  background-color: #aaa;  padding-bottom:2px;">
+            Waiting..
+        </i>
+            </td>
+        </tr> <tr class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
     }
 
+    window.generateForBasicCard = function(id) {
+        document.getElementById('cardContainer' + id).innerHTML = "This is a Basic Ogier Card, You cannot change your data!"
+    }
+
+
+    window.generateForDeactivatedCard = function(id) {
+        document.getElementById('cardContainer' + id).innerHTML = `Please ship your physical Ogier Card back so that we deactivate your subscription! <a href="/make-the-planet-greener.html"> ..Why we do this? </a>`;
+    }
 
     window.getData = function() {
         $('#cardContainer').html('');
         $('#lightBoxContainer').html(``);
         $('#putCardHere').html(``);
+        k = 0;
         fetch(baseURL + "card/mine/", {
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,13 +157,12 @@ function LetMeOUT() {
             .then(response => response.json())
             .then(result => {
                 for (var i = result.myCards.length; i > 0; i--) {
-                    $('#putCardHere').append(cardTableRow(result.myCards[i - 1], result.myCards.length - i + 1));
-                    generateCard(result.myCards[0].id, 1)
+                    $('#putCardHere').append(cardTableRow(result.myCards[i - 1]));
+                    allMyCardIds.push(result.myCards[result.myCards.length - i].id)
                 }
             })
             .catch(error => console.log('error', error));
     }
-
 
     getData();
 
@@ -125,7 +237,8 @@ function LetMeOUT() {
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
-                <button type="button" onClick="updateValue(${card.id});" style="color: white;" class="btn black .save-update col-md-9 send-form">Update</button>
+            <button type="button" onClick="updateValue(${card.id});" style="color: white;" class="btn black save-update col-md-5 send-form">Update</button>
+            <button type="button" onClick="deactivate(${card.id});" style="color: white;" class="btn black save-update col-md-5 send-form"> Deactivate</button>
             </div>
         </div>`;
         var cardDesign = `
@@ -147,12 +260,13 @@ function LetMeOUT() {
                         <label for="img${card.id}">Current Card Design</label>
                     </div>
                     <div class="row">
-                        <img id="img${card.id}" src="${card.designURL}" alt="${card.name + ' ' + card.company}" style="height: 250px"/>
+                        <embed src="${card.designURL}" width="100%" height="250px" />
+                        <!--img id="img${card.id}" src="${card.designURL}" alt="${card.name + ' ' + card.company}" style="height: 250px"/-->
                     </div>
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
-                <button type="button" onClick="updateDesign(${card.id});" style="color: white;" class="btn black .save-update col-md-9 send-form">Update Design</button>
+                <button type="button" onClick="updateDesign(${card.id});" style="color: white;" class="btn black save-update col-md-9 send-form">Update Design</button>
             </div>
         </div
         `;
@@ -191,7 +305,7 @@ function LetMeOUT() {
             </div>
             </div>
             <div class="row d-flex justify-content-center">
-                <button type="button" onClick="updatePromotion(${card.id});" style="color: white;" class="btn black .save-update col-md-9 send-form">Publish Promotion</button>
+                <button type="button" onClick="updatePromotion(${card.id});" style="color: white;" class="btn black save-update col-md-9 send-form">Publish Promotion</button>
             </div>
         </div
         `;
@@ -201,8 +315,6 @@ function LetMeOUT() {
     }
 
 
-
-
     window.cardView = function(card) {
         var views = generateViewForCard(card)
 
@@ -210,46 +322,46 @@ function LetMeOUT() {
         return [`
     <div class="row" id="${card.id}">
         <div class="col">
-            <div style="padding: 64px;" align="center" class="card">
+            <div style="padding: 64px;" align="center" class="">
                 <div class="center">
                 <div class="col-md-12 text-center">
                     <h3><b>${card.name + " " + card.surname + " " + card.tittle + " @ " + card.company}</b></h3>
                 </div>
             </div>
-            <div class="row center">
-                <a  class="popup-with-move-anim col centered"  href="#cardData${card.id}" >
+            <div class="row center" style="color:black !important;">
+                <a  class="popup-with-move-anim col centered" style="color:black !important"  href="#cardData${card.id}" >
                     <div class="white border lighten-3 col user-buttons waves-effect">
-                    <i class="indigo-text text-lighten-1 large material-icons">list</i>
+                    <i class="large material-icons">list</i>
                     <span class="indigo-text text-lighten-1"><h5>Data</h5></span>
                     </div>
                 </a>
-                <a  class="popup-with-move-anim col centered"  href="#cardDesign${card.id}" >
+                <a  class="popup-with-move-anim col centered" style="color:black !important" href="#cardDesign${card.id}" >
                     <div class="white border lighten-3 col user-buttons waves-effect">
-                    <i class="indigo-text text-lighten-1 large material-icons">view_day</i>
+                    <i class="large material-icons">view_day</i>
                     <span class="indigo-text text-lighten-1"><h5>Design</h5></span>
                     </div>
                 </a>
-                <a  class="popup-with-move-anim col centered col"  href="#createPromotion${card.id}" >
+                <a  class="popup-with-move-anim col centered col" style="color:black !important"  href="#createPromotion${card.id}" >
                     <div class="white border lighten-3 col user-buttons waves-effect">
-                    <i class="indigo-text text-lighten-1 large material-icons">add_alert</i>
+                    <i class="large material-icons">add_alert</i>
                     <span class="indigo-text text-lighten-1"><h5> Promotion</h5></span>
                     </div>
                 </a>
-                <a  class="popup-with-move-anim col centered"  href="#cardServices${card.id}" >
+                <a  class="popup-with-move-anim col centered" style="color:black !important" href="#cardServices${card.id}" >
                     <div class="white border user-buttons lighten-3 col waves-effect">
-                    <i class="indigo-text text-lighten-1 large material-icons">work_outline</i>
+                    <i class="large material-icons">work_outline</i>
                     <span class="indigo-text text-lighten-1"><h5>Services</h5></span>
                     </div>
                 </a>
-                <a  class="popup-with-move-anim col centered"  href="#analytics${card.id}" >
+                <a  class="popup-with-move-anim col centered"style="color:black !important"  href="#analytics${card.id}" >
                     <div class="white border user-buttons lighten-3 col waves-effect">
-                    <i class="indigo-text text-lighten-1 large material-icons">analytics</i>
+                    <i class="large material-icons">analytics</i>
                     <span class="indigo-text text-lighten-1"><h5>Analytics</h5></span>
                     </div>
                 </a>
             </div>
         </div>
-    </div>`, `
+    `, `
     <div id="cardData${card.id}" class="overlay">
         <div class="popup">
 		<a class="close" href="#">&times;</a>
@@ -283,20 +395,9 @@ function LetMeOUT() {
     `, ]
     }
 
-
-    $('#create-new-card').click(function() {
-        alert('level up to add more cards')
-    });
-
-
-
-
 })(jQuery);
 
-
 userSettings();
-
-
 
 function userSettings() {
     fetch(baseURL + "who/am/i", {
@@ -316,7 +417,6 @@ function userSettings() {
         })
         .catch(error => console.log('error', error))
 }
-
 
 function generateSettings(user) {
     return `
@@ -342,18 +442,8 @@ function generateSettings(user) {
                 <input type="text" class="form-control" value="${user.username}" id="username" name="username" required>
             </div>
             <div class="form-group col-md-6">
-                <label id="errPas" for="password">Password</label>
-                <input type="password" class="form-control" value="${user.password}"  id="password" name="password" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
                 <label for="email">email</label>
                 <input type="text" class="form-control" value="${user.email}" id="email" name="email" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label id="errPas1" for="confPass">Confirm Password</label>
-                <input type="password" class="form-control" value="${user.password}"  id="confPass" name="password" required>
             </div>
         </div>
         <div class="row">
@@ -385,110 +475,18 @@ function generateSettings(user) {
             </div>
         </div>
         <div class="row d-flex justify-content-center">
-            <button type="button" onClick="updateUser(${user.id});" style="color: white;" class="btn black .save-update col-md-9 send-form">Update</button>
+            <button type="button" onClick="updateUser(${user.id});" style="color: white;" class="btn black save-update col-md-9 send-form">Update</button>
         </div>
     </form>`;
 }
 
-function generateSubscriptionView(user) {
-    if (user.isSubscribed === 0) {
-        return `
-    <form id="settings${user.id}form"  style="padding:9px;">
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="">Where do </h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" value="${user.name}" id="name" name="name" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="surname">Surname</label>
-                <input type="text" class="form-control" value="${user.surname}"  id="surname" name="surname" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" value="${user.username}" id="username" name="username" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label id="errPas" for="password">Password</label>
-                <input type="password" class="form-control" value="${user.password}"  id="password" name="password" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="email">email</label>
-                <input type="text" class="form-control" value="${user.email}" id="email" name="email" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label id="errPas1" for="confPass">Confirm Password</label>
-                <input type="password" class="form-control" value="${user.password}"  id="confPass" name="password" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="address1">Address Line 1</label>
-                <input type="text" class="form-control" value="${user.addLine1}" id="address1" name="email" required>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="cityAdd">City</label>
-                <input type="text" class="form-control" value="${user.city}"  id="cityAdd" name="password" required>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="zipCode">Zip Code</label>
-                <input type="text" class="form-control" value="${user.zipCode}"  id="zipCode" name="password" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-4">
-                <label for="address2">Address Line 2 </label>
-                <input type="text" class="form-control" value="${user.addLine2}" id="address2" name="email" required>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="country">Country</label>
-                <input type="text" class="form-control" value="${user.country}"  id="country" name="password" required>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="phone">Phone</label>
-                <input type="text" class="form-control" value="${user.phone}"  id="phone" name="password" required>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <button type="button" onClick="updateUser(${user.id});" style="color: white;" class="btn black .save-update col-md-9 send-form">Update</button>
-        </div>
-    </form>`;
-    } else if (user.isSubscribed === 0) {
-        return `
-    <form id="settings${user.id}form"  style="padding:9px;">
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="">You are already a subscriber</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" value="${user.name}" id="name" name="name" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="surname">Surname</label>
-                <input type="text" class="form-control" value="${user.surname}"  id="surname" name="surname" required>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <button type="button" onClick="updateUser(${user.id});" style="color: white;" class="btn black .save-update col-md-9 send-form">Update</button>
-        </div>
-    </form>`;
-    }
-}
-
+var prevId = 0;
 
 function generateCard(id, i) {
-
+    if (prevId) {
+        $(`#cardContainer${prevId}`).html("");
+    }
+    prevId = id;
     (function($) {
         "use strict";
         fetch(baseURL + "card/give/me/" + id, {
@@ -499,9 +497,7 @@ function generateCard(id, i) {
             })
             .then(response => response.json())
             .then(c => {
-                if (i === 0)
-                    swal_ajax("success");
-                $('#cardContainer').html(cardView(c)[0]);
+                $('#cardContainer' + c.id).html(cardView(c)[0]);
                 $('#lightBoxContainer').append(cardView(c)[1]);
                 $('#lightBoxContainer').append(cardView(c)[2]);
                 $('#lightBoxContainer').append(cardView(c)[3]);
@@ -553,7 +549,7 @@ function createDesignDrgNDrop(c) {
 
 function handleFiles(files, id) {
     files = [...files]
-    var accept = ['jpg', 'png', 'jpeg']
+    var accept = ['jpg', 'png', 'jpeg', 'pdf', 'docx']
     accept.forEach(a => {
         if (files[0].name.split('.')[files[0].name.split('.').length - 1] == a) {
             var x = document.getElementById("drop" + id);
@@ -662,6 +658,78 @@ function updateCardDesign(url, id) {
         .catch(error => console.log('error', error));
 }
 
+function deactivate(id) {
+    (function($) {
+        "use strict";
+        location.hash = "";
+        $.ajax({
+            type: "POST",
+            url: baseURL + "card/deactivate/" + id,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            success: function(json) {
+                swal_ajax('success');
+                getData();
+            },
+            error: function() {
+                swal_ajax('error');
+                return false;
+            }
+        });
+
+    })(jQuery);
+}
+
+function deleteCard(id) {
+    (function($) {
+        "use strict";
+        location.hash = "";
+        $.ajax({
+            type: "DELETE",
+            url: baseURL + "card/delete/" + id,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            success: function(json) {
+                swal_ajax('success');
+                getData();
+            },
+            error: function() {
+                swal_ajax('error');
+                return false;
+            }
+        });
+
+    })(jQuery);
+}
+
+function activate(id) {
+    (function($) {
+        "use strict";
+        location.hash = "";
+        $.ajax({
+            type: "PUT",
+            url: baseURL + "card/reActivate/" + id,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            success: function(json) {
+                swal_ajax('success');
+                getData();
+            },
+            error: function() {
+                swal_ajax('error');
+                return false;
+            }
+        });
+
+    })(jQuery);
+}
+
 function updateDesign(id) {
     location.hash = "";
     var x = document.getElementById("design" + id);
@@ -696,13 +764,13 @@ function updateValue(id) {
         var name = $("#name" + id).val();
         var surname = $("#surname" + id).val();
         var email = $("#email" + id).val();
-        var address = $("#address" + id).val();
+        var address = $("#address" + id).val(); /**  TODO: fix the shipping problem u dumb ass */
         var url = $("#url" + id).val();
         var tittle = $("#tittle" + id).val();
         var company = $("#company" + id).val();
         var catchLine = $("#lin" + id).val();
         var fb = $("#facebook" + id).val();
-        var ig = $("#instagram3     " + id).val();
+        var ig = $("#instagram" + id).val();
         var ln = $("#ln" + id).val();
         var tw = $("#twitter" + id).val();
 
@@ -715,6 +783,7 @@ function updateValue(id) {
             })
             .then(response => response.json())
             .then(result => {
+                console.log(result);
                 result.name = name;
                 result.surname = surname;
                 result.email = email;
@@ -756,8 +825,6 @@ function updateValue(id) {
     })(jQuery);
 }
 
-
-
 function updateUser(id) {
     (function($) {
         "use strict";
@@ -772,7 +839,7 @@ function updateUser(id) {
         $("#errPas1").html("Confirm Password");
         location.hash = "";
 
-        fetch(baseURL + "who/am/i/" + id, {
+        fetch(baseURL + "who/am/i/", {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -784,7 +851,6 @@ function updateUser(id) {
                 result.surname = $("#surname").val();
                 result.email = $("#email").val();
                 result.username = $("#username").val();
-                result.password = $("#password").val();
                 result.addLine1 = $("#address1").val();
                 result.addLine2 = $("#address2").val();
                 result.zipCode = $("#zipCode").val();
@@ -792,10 +858,11 @@ function updateUser(id) {
                 result.city = $("#cityAdd").val();
                 result.phone = $("#phone").val();
 
+
                 $.ajax({
                     type: "POST",
                     data: JSON.stringify(result),
-                    url: baseURL + "update/me",
+                    url: baseURL + "user/update",
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -829,7 +896,7 @@ function swal_ajax(type) {
                     Swal.showLoading()
                 },
                 onClose: () => {
-                    clearInterval(timerInterval)
+                    clearInterval(1000)
                 }
             });
             break;

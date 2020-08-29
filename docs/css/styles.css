@@ -4,6 +4,50 @@
    Description: Master CSS file
 */
 
+.black {
+    border-radius: 25px;
+    margin: 12px 0px 12px 0px;
+    background-color: black;
+}
+
+.black:hover {
+    background-color: black !important;
+}
+
+.white {
+    border-radius: 25px;
+    margin: 12px 0px 12px 0px;
+    background-color: white;
+}
+
+.white:hover {
+    background-color: white !important;
+}
+
+.container-1 {
+    margin-top: 8em;
+    margin-bottom: 1em;
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    grid-template-columns: 100%;
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+}
+
+.container-2 {
+    margin-top: 8em;
+    margin-bottom: 1em;
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    grid-template-columns: 100%;
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+}
+
 .drop-here {
     border: 2px dashed #ccc;
     border-radius: 15px;
@@ -13,7 +57,20 @@
     padding: 19px;
 }
 
+.drop-here0 {
+    border: 2px dashed #ccc;
+    border-radius: 15px;
+    font-family: sans-serif;
+}
+
 .drop-here.highlight {
+    border-color: rgba(30, 60, 209, 0.696);
+    transition: all .2s ease-in-out;
+    transform: scale(1.03);
+    box-shadow: 1px 1px 1px 1px #0000002a;
+}
+
+.drop-here0.highlight {
     border-color: rgba(30, 60, 209, 0.696);
     transition: all .2s ease-in-out;
     transform: scale(1.03);
@@ -140,6 +197,14 @@ Colors:
     margin-right: auto;
 }
 
+.save-update {
+    border-radius: 0.5px;
+    margin-left: 19px;
+    margin-right: 19px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .user-buttons:hover {
     transition: all .2s ease-in-out;
     transform: scale(1.19);
@@ -147,8 +212,10 @@ Colors:
 }
 
 .save-update:hover {
+    background-color: #fff;
+    color: #000;
     transition: all .2s ease-in-out;
-    transform: scale(1.13);
+    transform: scale(1.17);
     box-shadow: 2px 2px 2px 2px #0000002a;
 }
 
@@ -171,7 +238,7 @@ html {
 
 body,
 p {
-    color: #555;
+    color: #000;
     font: 400 1rem/1.625rem "Open Sans", sans-serif;
     ;
 }
@@ -1800,7 +1867,7 @@ a.back-to-top {
     width: 2.625rem;
     height: 2.625rem;
     border-radius: 1.875rem;
-    background: #000 url("../images/up-arrow.png") no-repeat center 47%;
+    background: #000 url("/images/up-arrow.png") no-repeat center 47%;
     background-size: 1.125rem 1.125rem;
     text-indent: -9999px;
 }
@@ -2037,6 +2104,18 @@ a:hover.back-to-top {
 /* Min-width width 992px */
 
 @media (min-width: 992px) {
+    .container-1 {
+        display: grid;
+        grid-template-columns: 30% 70% !important;
+        grid-column-gap: 1em;
+        grid-row-gap: 1em;
+    }
+    .container-2 {
+        display: grid;
+        grid-template-columns: 45% 55% !important;
+        grid-column-gap: 1em;
+        grid-row-gap: 1em;
+    }
     .lightbox-user {
         width: 80%;
     }
