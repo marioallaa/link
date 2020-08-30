@@ -16,8 +16,9 @@ var name = '',
     instagram = '',
     linkedIn = '',
     twitter = '',
-    designUrl = null,
-    newCard;
+    designUrl = null;
+
+var newCard = {};
 
 function handleDrop(e) {
     var dt = e.dataTransfer
@@ -27,10 +28,11 @@ function handleDrop(e) {
 function handleFiles(files) {
     swal_ajax('load');
     files = [...files]
+    console.log(files)
     var l = false
-    var accept = ['pdf', 'docx', 'pptx']
+    var accept = ['pdf', 'docx', 'pptx', 'PDF', "PPTX", "DOCX"]
     accept.forEach(a => {
-        if (files[0].name.split('.')[files[0].name.split('.').length - 1] == a) {
+        if (files[0].type.split('/')[files[0].name.split('.').length - 1] == a) {
             upload(files[0], );
             l = true;
         }
@@ -127,7 +129,8 @@ function next() {
             document.getElementById('forname').style.color = "red";
             go = false;
         } else {
-            name = $('#cname').val();
+            name = $('#cname').val().toLowerCase();
+            name = name.charAt(0).toUpperCase() + name.slice(1);
             go = true;
         }
         if ($('#csurname').val() === $('#control').val()) {
@@ -136,7 +139,8 @@ function next() {
             go = false;
         } else {
             go = true;
-            surname = $('#csurname').val();
+            surname = $('#csurname').val().toLowerCase();
+            surname = surname.charAt(0).toUpperCase() + surname.slice(1);
         }
         if ($('#ccompany').val() === $('#control').val()) {
             document.getElementById('forcompany').innerHTML = 'Company is required*';
@@ -144,7 +148,8 @@ function next() {
             go = false;
         } else {
             go = true;
-            company = $('#ccompany').val();
+            company = $('#ccompany').val().toLowerCase();
+            company = company.charAt(0).toUpperCase() + company.slice(1);
         }
         if ($('#ctitle').val() === $('#control').val()) {
             document.getElementById('forposition').innerHTML = 'Position is required*';

@@ -5,8 +5,6 @@
 */
 
 
-
-// Your web app's Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyAgGjB3QQWTcMmq_ji5BJUuHiAvbrJJet4",
     authDomain: "ogierio.firebaseapp.com",
@@ -19,7 +17,8 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
+//   firebase.analytics();
+
 
 (function($) {
     "use strict";
@@ -191,10 +190,10 @@ firebase.initializeApp(firebaseConfig);
     function ssubmitForm() {
         // initiate variables with form content
         var hashObj = new jsSHA("SHA-512", "TEXT", { numRounds: 1 });
-        var email = $("#semail").val();
+        var email = $("#semail").val().toLowerCase();
         var name = $("#sname").val();
         var surname = $("#ssurname").val();
-        var username = $("#suname").val();
+        var username = $("#suname").val().toLowerCase();
         var password = $("#spassword").val();
         var type = $("#sType").val();
         hashObj.update(password);
@@ -210,7 +209,6 @@ firebase.initializeApp(firebaseConfig);
             username: username,
             password: password,
             accountType: type,
-
         }
         $.ajax({
             type: "POST",

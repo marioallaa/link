@@ -5,7 +5,6 @@ var storage = firebase.storage();
 var storageRef = storage.ref();
 var designs = storageRef.child('designs');
 var baseURL = "http://" + window.location.host + "/";
-console.log(baseURL);
 var allMyCardIds = []
 headers = {
     'Content-Type': 'application/json',
@@ -30,7 +29,6 @@ function checkStatusCard(id) {
     var k = 0;
 
     function cardTableRow(c) {
-        console.log(c.status);
         if (c.status != 'ACTIVE' && c.status != '!ACTIVE' && c.plan != 0 && c.plan != 9) return `
         <tr  onclick=checkStatusCard(${c.id})>
             <td>${k = k + 1}</td>
@@ -131,7 +129,8 @@ function checkStatusCard(id) {
             Waiting..
         </i>
             </td>
-        </tr> <tr class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+        </tr> <tr class="white"> <td class="col-md-12" colspan="4">
+        <div class="col col-md-12" id="cardContainer${c.id}" style="display: flex; align-items: center; justify-content: center;"> </div></td> </tr>`;
     }
 
     window.generateForBasicCard = function(id) {
@@ -241,36 +240,94 @@ function checkStatusCard(id) {
             <button type="button" onClick="deactivate(${card.id});" style="color: white;" class="btn black save-update col-md-5 send-form"> Deactivate</button>
             </div>
         </div>`;
-        var cardDesign = `
-        <div id="card${card.id}design"  style="padding:9px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="">Update Card Design</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group drop-here col-md-5"  id="drop${card.id}">
-                    <label for="design${card.id}">Upload/Drop Design </label>
-                    <input type="file" class="form-control" id="design${card.id}"  style="border:0px;" accept=".jpg, .jpeg, .png">
-                </div>
-                <div class="form-group col-md-1">
-                </div>
-                <div class="form-group col-md-6">
-                    <div class="row">
-                        <label for="img${card.id}">Current Card Design</label>
-                    </div>
-                    <div class="row">
-                        <embed src="${card.designURL}" width="100%" height="250px" />
-                        <!--img id="img${card.id}" src="${card.designURL}" alt="${card.name + ' ' + card.company}" style="height: 250px"/-->
+        if (card.plan > 2) {
+            var cardDesign = `
+            <div id="card${card.id}design"  style="padding:9px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="">Update Card Design</h3>
                     </div>
                 </div>
-            </div>
-            <div class="row d-flex justify-content-center">
-                <button type="button" onClick="updateDesign(${card.id});" style="color: white;" class="btn black save-update col-md-9 send-form">Update Design</button>
-            </div>
-        </div
+                <div class="row">
+                    <div class="form-group drop-here col-md-5"  id="drop${card.id}">
+                        <label for="design${card.id}">Upload/Drop Design </label>
+                        <input type="file" class="form-control" id="design${card.id}"  style="border:0px;" accept=".jpg, .jpeg, .png">
+                    </div>
+                    <div class="form-group col-md-1">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="row">
+                            <label for="img${card.id}">Current Card Design</label>
+                        </div>
+                        <div class="row">
+                            <embed src="${card.designURL}" width="100%" height="250px" />
+                            <!--img id="img${card.id}" src="${card.designURL}" alt="${card.name + ' ' + card.company}" style="height: 250px"/-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <button type="button" onClick="updateDesign(${card.id});" style="color: white;" class="btn black save-update col-md-9 send-form">Update Design</button>
+                </div>
+            </div
+            `;
+        } else {
+            var cardDesign = `
+            <div id="card${card.id}design"  style="padding:9px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="">Update Card Design</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <p> Your subscription doesn't include dynamic design. </br>
+                        If you want to change the virtual design of your card consider upgrading your <a href="#" > card plan. </a> </p>
+                    </div>
+                </div>
+            </div>`
+        }
+        if (card.plan > 2) {
+            var cardPromotion = `
+            <div id="card${card.id}promotion"  style="padding:9px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="">Create Promotion</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <div class="row">
+                            <div class="form-group col-md-9">
+                                <label for="promotionTitle${card.id}">Promotion Title</label>
+                                <input type="text" class="form-control" value="" placeholder="Title.." id="promotionTitle${card.id}" name="company" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="offer${card.id}">Price</label>
+                                <input type="text" class="form-control" value="" placeholder="Price.." id="offer${card.id}" name="company" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="desc${card.id}">Promotion Description</label>
+                                <input type="text" class="form-control" value="" placeholder="Description.." id="desc${card.id}" name="company" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12" style="padding-right: 36px" id="dropPromotion${card.id}">
+                            <label for="designPromotion${card.id}">Upload/Drop Promotion Image </label>
+                            <input type="file" class="form-control" id="designPromotion${card.id}"  style="border:0px;" accept=".jpg, .jpeg, .png">
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <button type="button" onClick="updatePromotion(${card.id});" style="color: white;" class="btn black save-update col-md-9 send-form">Publish Promotion</button>
+                </div>
+            </div
         `;
-        var cardPromotion = `
+        } else {
+            var cardPromotion = `
         <div id="card${card.id}promotion"  style="padding:9px;">
             <div class="row">
                 <div class="col-md-12">
@@ -279,38 +336,38 @@ function checkStatusCard(id) {
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <div class="row">
-                        <div class="form-group col-md-9">
-                            <label for="promotionTitle${card.id}">Promotion Title</label>
-                            <input type="text" class="form-control" value="" placeholder="Title.." id="promotionTitle${card.id}" name="company" required>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="offer${card.id}">Price</label>
-                            <input type="text" class="form-control" value="" placeholder="Price.." id="offer${card.id}" name="company" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="desc${card.id}">Promotion Description</label>
-                            <input type="text" class="form-control" value="" placeholder="Description.." id="desc${card.id}" name="company" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-12" style="padding-right: 36px" id="dropPromotion${card.id}">
-                        <label for="designPromotion${card.id}">Upload/Drop Promotion Image </label>
-                        <input type="file" class="form-control" id="designPromotion${card.id}"  style="border:0px;" accept=".jpg, .jpeg, .png">
-                    </div>
+                    <p> Your subscription doesn't include promotions. <br>
+                     If you want to send promotions to your network consider upgrading your <a href="#" > card plan. </a> </p>
                 </div>
             </div>
+        </div>`
+        }
+        var cardServices = `
+        <div id="card${card.id}promotion"  style="padding:9px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="">What do you offer? </h3>
+                </div>
             </div>
-            <div class="row d-flex justify-content-center">
-                <button type="button" onClick="updatePromotion(${card.id});" style="color: white;" class="btn black save-update col-md-9 send-form">Publish Promotion</button>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <p>Coming Soon!</p>
+                </div>
             </div>
-        </div
-        `;
-        var cardServices = null;
-        var cardAnalytics = null;
+        </div>`;
+        var cardAnalytics = `
+        <div id="card${card.id}promotion"  style="padding:9px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="">Analytics </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <p>Coming Soon!</p>
+                </div>
+            </div>
+        </div>`;
         return [cardData, cardDesign, cardPromotion, cardServices, cardAnalytics]
     }
 
@@ -783,7 +840,6 @@ function updateValue(id) {
             })
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 result.name = name;
                 result.surname = surname;
                 result.email = email;
