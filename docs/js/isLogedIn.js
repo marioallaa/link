@@ -1,4 +1,4 @@
-var baseURL = "http://" + window.location.host + "/";
+var baseURL = "http://api.ogier.io/";
 var token = localStorage.getItem('token')
 fetch(baseURL + "who/am/i/", {
         headers: {
