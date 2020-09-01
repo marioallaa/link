@@ -196,6 +196,11 @@ firebase.initializeApp(firebaseConfig);
         var username = $("#suname").val().toLowerCase();
         var password = $("#spassword").val();
         var type = $("#sType").val();
+        if (type === "Business") {
+            sformError();
+            ssubmitMSG(false, "Business Accounts are not supported yet!");
+            return;
+        }
         hashObj.update(password);
         password = hashObj.getHash("HEX");
 
@@ -309,8 +314,8 @@ firebase.initializeApp(firebaseConfig);
                 }
             },
             error: function(text) {
-                sformError();
-                ssubmitMSG(false, "Couldn't establish a connection.")
+                lformError();
+                lsubmitMSG(false, "Couldn't establish a connection.")
             }
         });
     }

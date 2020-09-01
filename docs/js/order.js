@@ -30,9 +30,9 @@ function handleFiles(files) {
     files = [...files]
     console.log(files)
     var l = false
-    var accept = ['pdf', 'docx', 'pptx', 'PDF', "PPTX", "DOCX"]
+    var accept = ['pdf', 'docx', 'pptx', 'doc', "ppt", ]
     accept.forEach(a => {
-        if (files[0].type.split('/')[files[0].name.split('.').length - 1] == a) {
+        if (files[0].name.split('.')[files[0].name.split('.').length - 1] == a) {
             upload(files[0], );
             l = true;
         }
@@ -56,8 +56,8 @@ function upload(file, ) {
             swal_ajax('success');
             go = true;
             document.getElementById("designConfirm").innerHTML = `<h5>Uploaded: <a href="${url}"> ${file.name}</a></h5>`;
-            console.log(url)
             designUrl = url;
+            next();
         });
     });
 }
