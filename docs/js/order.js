@@ -3,7 +3,6 @@ var storageRef = storage.ref();
 var designs = storageRef.child('designs');
 var baseURL = "https://api.ogier.io/";
 userSettings();
-var go = false;
 var name = '',
     surname = '',
     company = '',
@@ -54,7 +53,6 @@ function upload(file, ) {
     ref.put(file).then(function(snapshot) {}).then(function() {
         ref.getDownloadURL().then(function(url) {
             swal_ajax('success');
-            go = true;
             document.getElementById("designConfirm").innerHTML = `<h5>Uploaded: <a href="${url}"> ${file.name}</a></h5>`;
             designUrl = url;
             next();
@@ -122,6 +120,7 @@ function orderNewCard() {
 };
 
 function next() {
+    var go = true;
     (function($) {
         "use strict";
         if ($('#cname').val() === $('#control').val()) {
@@ -129,16 +128,18 @@ function next() {
             document.getElementById('forname').style.color = "red";
             go = false;
         } else {
+            document.getElementById('forname').innerHTML = 'Name*';
+            document.getElementById('forname').style.color = "grey";
             name = $('#cname').val().toLowerCase();
             name = name.charAt(0).toUpperCase() + name.slice(1);
-            go = true;
         }
         if ($('#csurname').val() === $('#control').val()) {
             document.getElementById('forsurname').innerHTML = 'Surname is required*';
             document.getElementById('forsurname').style.color = "red";
             go = false;
         } else {
-            go = true;
+            document.getElementById('forsurname').innerHTML = 'Surname*';
+            document.getElementById('forsurname').style.color = "grey";
             surname = $('#csurname').val().toLowerCase();
             surname = surname.charAt(0).toUpperCase() + surname.slice(1);
         }
@@ -147,7 +148,8 @@ function next() {
             document.getElementById('forcompany').style.color = "red";
             go = false;
         } else {
-            go = true;
+            document.getElementById('forcompany').innerHTML = 'Company**';
+            document.getElementById('forcompany').style.color = "grey";
             company = $('#ccompany').val().toLowerCase();
             company = company.charAt(0).toUpperCase() + company.slice(1);
         }
@@ -156,7 +158,8 @@ function next() {
             document.getElementById('forposition').style.color = "red";
             go = false;
         } else {
-            go = true;
+            document.getElementById('forposition').innerHTML = 'Position*';
+            document.getElementById('forposition').style.color = "grey";
             position = $('#ctitle').val();
         }
         if ($('#cphone').val() === $('#control').val()) {
@@ -164,7 +167,8 @@ function next() {
             document.getElementById('forphone').style.color = "red";
             go = false;
         } else {
-            go = true;
+            document.getElementById('forphone').innerHTML = 'Phone*';
+            document.getElementById('forphone').style.color = "grey";
             phone = $('#cphone').val();
         }
 
@@ -174,25 +178,25 @@ function next() {
         linkedIn = $('#cln').val();
         twitter = $('#ctw').val();
         console.log(designUrl)
+        console.log(go)
         if (designUrl === undefined || designUrl === null) {
             var x = document.getElementById("cdesign");
+            go = false;
             if ('files' in x) {
                 if (x.files.length == 0) {} else {
                     for (var i = 0; i < x.files.length; i++) {
                         var file = x.files[i];
                         handleFiles([file]);
-                        go = false;
                         swal_ajax('load');
                         document.getElementById('cnotif').innerHTML = '<h5 style="margin-top:25px; color:red;"> Please wait until we upload your design and try again </h5>';
                     }
                 }
             }
-        } else {
-            go = true;
         }
-
         if (!go) {
-            document.getElementById('cnotif').innerHTML = '<h5 style="margin-top:25px; color:red;"> Please check your data and try again! </h5>';
+            document.getElementById('cnotif').innerHTML =
+                `<h5 style="color:red;"> Please check your data and try again! <br>` +
+                `If you don't have a design already,<br>  <b> <a href="#"> talk with our designers. </a> </b>  </h5>`;
         } else {
             orderNewCard();
             if (type === 'Business') {

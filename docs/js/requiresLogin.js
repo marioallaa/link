@@ -8,20 +8,11 @@ fetch(baseURL + "who/am/i/", {
     })
     .then(response => response.json())
     .catch(error => {
-
-        document.location.href = "/auth/login/";
         console.log('error', error)
+        document.location.href = "/auth/login/";
     })
     .then(result => {
-        if (result.username === 'null' || result.username === undefined) {
-            document.location.href = "/auth/login/";
-        } else {
-            console.log('welcome ' + result.username)
-        }
+
+        console.log('welcome ' + result.username)
 
     })
-    .catch(error => {
-
-        document.location.href = "/auth/login/";
-        console.log('error', error)
-    });

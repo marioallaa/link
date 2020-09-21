@@ -29,20 +29,21 @@ function checkStatusCard(id) {
     var k = 0;
 
     function cardTableRow(c) {
-        if (c.status != 'ACTIVE' && c.status != '!ACTIVE' && c.plan != 0 && c.plan != 9) return `
-        <tr  onclick=checkStatusCard(${c.id})>
-            <td>${k = k + 1}</td>
-            <td>${c.name + " " + c.surname} | <a onclick=checkStatusCard(${c.id})>
-                <i class="badge-pill align-self-center" style="text-align: center; color: white;font-size: 15px;  background-color: #ee0000;  padding-bottom:2px;">
-                    Check Status
-                </i></a></td>
-            <td>${c.timeCreated.slice(3, 21)}  </td>
-            <td style="text-align: center;">
-                <i class="badge-pill align-self-center" style="text-align: center; color: white;font-size: 15px;  background-color: #800080;  padding-bottom:2px;">
-                    Waiting..
-                </i>
-            </td>
-        </tr> <tr  class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id=""></div></td> </tr>`;
+        if (c.status != 'ACTIVE' && c.status != '!ACTIVE' && c.plan != 0 && c.plan != 9) return
+            /* `
+                   <tr  onclick=checkStatusCard(${c.id})>
+                       <td>${k = k + 1}</td>
+                       <td>${c.name + " " + c.surname} | <a onclick=checkStatusCard(${c.id})>
+                           <i class="badge-pill align-self-center" style="text-align: center; color: white;font-size: 15px;  background-color: #ee0000;  padding-bottom:2px;">
+                               Check Status
+                           </i></a></td>
+                       <td>${c.timeCreated.slice(3, 21)}  </td>
+                       <td style="text-align: center;">
+                           <i class="badge-pill align-self-center" style="text-align: center; color: white;font-size: 15px;  background-color: #800080;  padding-bottom:2px;">
+                               Waiting..
+                           </i>
+                       </td>
+                   </tr> <tr  class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id=""></div></td> </tr>`;*/
         if (c.plan === 0) return;
         if (c.plan == 1) return `
         <tr onclick="generateForBasicCard(${c.id})">

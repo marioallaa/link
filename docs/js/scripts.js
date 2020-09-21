@@ -248,7 +248,7 @@ firebase.initializeApp(firebaseConfig);
             },
             error: function(text) {
                 sformError();
-                ssubmitMSG(false, "Couldn't establish a connection.")
+                ssubmitMSG(false, "The username that you have chosen is already taken.")
             }
         });
     }
@@ -315,7 +315,7 @@ firebase.initializeApp(firebaseConfig);
             },
             error: function(text) {
                 lformError();
-                lsubmitMSG(false, "Couldn't establish a connection.")
+                lsubmitMSG(false, "Please check your username and password.")
             }
         });
     }
