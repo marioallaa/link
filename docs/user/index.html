@@ -47,6 +47,27 @@
                 align-items: center;
             }
             
+            .fab {
+                z-index: 5556;
+                position: fixed;
+                width: 64px;
+                right: 5%;
+                bottom: 42px;
+                margin-left: -28px;
+            }
+            
+            .fab-action-button {
+                z-index: 5556;
+                position: absolute;
+                bottom: 0;
+                display: block;
+                width: 64px;
+                height: 64px;
+                background-color: #fefefe;
+                border-radius: 50%;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 5px 0 rgba(0, 0, 0, 0.3), 0 3px 1px -2px rgba(0, 0, 0, 0.5);
+            }
+            
             .centered {
                 width: 80%;
                 margin: 13px;
@@ -56,6 +77,14 @@
     </head>
 
     <body data-spy="scroll" data-target=".fixed-top">
+
+
+
+        <div class="fab">
+            <span class="fab-action-button">
+                <a href="/order/" style="text-decoration: none; color:black"> <b class="fa fa-plus" style="font-size: 32px; height:64px !Important ; margin: auto; display: flex; align-items: center; justify-content: center;"> </b></a>
+              </span>
+        </div>
 
         <head>
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -119,11 +148,11 @@
 
 
         <main style="padding: 32px; margin-bottom: 75px">
-            <div class="row" style="padding: 8px;">
+            <div class="row" style="padding: 8px; ">
 
 
 
-                <div class="card col-md-12" style="padding: 18px; margin; min-height: 250px">
+                <div class="card col-md-12" style="padding: 0px; min-height: 250px">
                     <div class=" text-center">
                         <h3><b>My oiger cards</b></h3>
                     </div>
@@ -225,7 +254,7 @@
                                 </li>
                                 <li class="media">
                                     <i class="fas fa-envelope"></i>
-                                    <div class="media-body"><a style="color: #fff;" href="mailto:mail@oiger.io">mail@oiger.io</a> <i class="fas fa-globe"></i><a style="color: #fff;" href="#">oiger.io</a></div>
+                                    <div class="media-body"><a style="color: #fff;" href="mailto:info@ogier.io">info@ogier.io</a> <i class="fas fa-globe"></i><a style="color: #fff;" href="#">oiger.io</a></div>
                                 </li>
                             </ul>
                         </div>

@@ -56,7 +56,7 @@ function checkStatusCard(id) {
                 </i>
             </td>
         </tr>
-        <tr class="white">
+        <tr class="whitew">
         <td class="col-md-12" colspan="4">
       <div class="col col-md-12" id="cardContainer${c.id}" style="display: flex; align-items: center; justify-content: center;"></div></td>
                 </tr>`;
@@ -71,7 +71,7 @@ function checkStatusCard(id) {
                 </i>
             </td>
         </tr>
-        <tr class="white">
+        <tr class="whitew">
             <td class="col-md-12" colspan="4">
                 <div class="col col-md-12" id="cardContainer${c.id}"></div>
             </td>
@@ -86,7 +86,7 @@ function checkStatusCard(id) {
                     Gold
                 </i>
             </td>
-        </tr> <tr class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+        </tr> <tr class="whitew"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
         if (c.plan === 4 && c.status != '!ACTIVE') return `
         <tr onclick="generateCard(${c.id}, 0);">
             <td>${k = k + 1}</td>
@@ -97,7 +97,7 @@ function checkStatusCard(id) {
                     Silver
                 </i>
             </td>
-        </tr> <tr class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+        </tr> <tr class="whitew"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
         if (c.plan === 5 && c.status != '!ACTIVE') return `
         <tr onclick="generateCard(${c.id}, 0);">
             <td>${k = k + 1}</td>
@@ -108,7 +108,7 @@ function checkStatusCard(id) {
                     Gold
                 </i>
             </td>
-        </tr> <tr class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+        </tr> <tr class="whitew"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
         if (c.plan === 6 && c.status != '!ACTIVE') return `
         <tr onclick="generateCard(${c.id}, 0);">
             <td>${k = k + 1}</td>
@@ -119,7 +119,7 @@ function checkStatusCard(id) {
                     Diamond
                 </i>
             </td>
-        </tr> <tr class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+        </tr> <tr class="whitew"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
         if (c.status == '!ACTIVE') return `
         <tr onclick="generateForDeactivatedCard(${c.id}, 0);">
             <td>${k = k + 1}</td>
@@ -130,7 +130,7 @@ function checkStatusCard(id) {
             Waiting..
         </i>
             </td>
-        </tr> <tr class="white"> <td class="col-md-12" colspan="4">
+        </tr> <tr class="whitew"> <td class="col-md-12" colspan="4">
         <div class="col col-md-12" id="cardContainer${c.id}" style="display: flex; align-items: center; justify-content: center;"> </div></td> </tr>`;
     }
 
@@ -388,31 +388,31 @@ function checkStatusCard(id) {
             </div>
             <div class="row center" style="color:black !important;">
                 <a  class="popup-with-move-anim col centered" style="color:black !important"  href="#cardData${card.id}" >
-                    <div class="white border lighten-3 col user-buttons waves-effect">
+                    <div class="whitew border lighten-3 col user-buttons waves-effect">
                     <i class="large material-icons">list</i>
                     <span class="indigo-text text-lighten-1"><h5>Data</h5></span>
                     </div>
                 </a>
                 <a  class="popup-with-move-anim col centered" style="color:black !important" href="#cardDesign${card.id}" >
-                    <div class="white border lighten-3 col user-buttons waves-effect">
+                    <div class="whitew border lighten-3 col user-buttons waves-effect">
                     <i class="large material-icons">view_day</i>
                     <span class="indigo-text text-lighten-1"><h5>Design</h5></span>
                     </div>
                 </a>
                 <a  class="popup-with-move-anim col centered col" style="color:black !important"  href="#createPromotion${card.id}" >
-                    <div class="white border lighten-3 col user-buttons waves-effect">
+                    <div class="whitew border lighten-3 col user-buttons waves-effect">
                     <i class="large material-icons">add_alert</i>
                     <span class="indigo-text text-lighten-1"><h5> Promotion</h5></span>
                     </div>
                 </a>
                 <a  class="popup-with-move-anim col centered" style="color:black !important" href="#cardServices${card.id}" >
-                    <div class="white border user-buttons lighten-3 col waves-effect">
+                    <div class="whitew border user-buttons lighten-3 col waves-effect">
                     <i class="large material-icons">work_outline</i>
                     <span class="indigo-text text-lighten-1"><h5>Services</h5></span>
                     </div>
                 </a>
                 <a  class="popup-with-move-anim col centered"style="color:black !important"  href="#analytics${card.id}" >
-                    <div class="white border user-buttons lighten-3 col waves-effect">
+                    <div class="whitew border user-buttons lighten-3 col waves-effect">
                     <i class="large material-icons">analytics</i>
                     <span class="indigo-text text-lighten-1"><h5>Analytics</h5></span>
                     </div>

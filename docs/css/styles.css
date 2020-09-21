@@ -17,10 +17,20 @@
 .white {
     border-radius: 25px;
     margin: 12px 0px 12px 0px;
-    background-color: white;
+    color: white;
 }
 
 .white:hover {
+    color: white !important;
+}
+
+.whitew {
+    border-radius: 25px;
+    margin: 12px 0px 12px 0px;
+    background-color: white;
+}
+
+.whitew:hover {
     background-color: white !important;
 }
 
