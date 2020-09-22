@@ -12,6 +12,9 @@ fetch(baseURL + "who/am/i/", {
         document.location.href = "/auth/login/";
     })
     .then(result => {
+        if (result.username === undefined) {
+            document.location.href = "/auth/login/";
+        }
 
         console.log('welcome ' + result.username)
 

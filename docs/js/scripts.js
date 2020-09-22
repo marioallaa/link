@@ -233,7 +233,7 @@ firebase.initializeApp(firebaseConfig);
                                 localStorage.setItem('token', text.access_token)
                                 sformSuccess();
                                 setTimeout(function() {
-                                    window.location.href = "/user/";
+                                    window.location.href = "/order/";
                                 }, 500)
                             } else {
                                 sformError();
@@ -248,7 +248,7 @@ firebase.initializeApp(firebaseConfig);
             },
             error: function(text) {
                 sformError();
-                ssubmitMSG(false, "The username that you have chosen is already taken.")
+                ssubmitMSG(false, "The username that you have chosen is already taken. If the error persists please try again later.")
             }
         });
     }

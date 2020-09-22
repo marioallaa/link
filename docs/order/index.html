@@ -106,14 +106,21 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control-input" id="ccompany" required>
-                                        <label class="label-control" id="forcompany" for="ccompany">Company*</label>
-                                        <div class="help-block with-errors"></div>
+                                    <div class="row">
+                                        <div class="form-group col col-md-6">
+                                            <input type="text" class="form-control-input" id="ccompany" required>
+                                            <label class="label-control" id="forcompany" for="ccompany">Company*</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group col col-md-6">
+                                            <input type="text" class="form-control-input" id="ctitle" required>
+                                            <label class="label-control" id="forposition" for="ctitle">Position*</label>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control-input" id="ctitle" required>
-                                        <label class="label-control" id="forposition" for="ctitle">Position*</label>
+                                        <input type="email" class="form-control-input" id="cmail" required>
+                                        <label class="label-control" id="formail" for="cmail">Email*</label>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="form-group">
@@ -220,14 +227,14 @@
                             <!-- Sign Up Form -->
                             <div class="form-container" style="max-width:100% !important; min-height:330px;">
                                 <div class="form-group">
-                                    <h3> Chose Your Plan </h3>
+                                    <h3 id="planStuff"> Buy Now </h3>
                                 </div>
                                 <form id="signUpForm" data-toggle="validator" data-focus="false" style="padding-top: 75px;display: flex; align-items: center; justify-content: center;">
                                     <div id="nxt" style="width:100%; display: flex; align-items: center; justify-content: center;">
                                         <div class="row" style=" " style="display: flex; align-items: center; justify-content: center;">
-                                            <p class="col-md-9" id="cnotif" style="color:#aaa; margin-top:9px"> Click Next After you have completely filled all the data and ploaded an acceptable design.</p>
-                                            <div class="col-md-3">
-                                                <button type="button" onClick="next()" style="color: white;  height:54px; width: 200px; border-radius: 25px;" class="btn black save-update col-md-11 send-form">NEXT</button>
+                                            <p class="col-md-8" id="cnotif" style="color:#aaa; margin-top:8px"> </p>
+                                            <div class="col-md-4">
+                                                <button type="button" id="orderNow" onClick="next()" style="color: white;  height:54px; width: 200px; border-radius: 25px;" class="btn black save-update col-md-11 send-form">NEXT</button>
                                             </div>
                                         </div>
 

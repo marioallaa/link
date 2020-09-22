@@ -3,6 +3,8 @@ var storageRef = storage.ref();
 var designs = storageRef.child('designs');
 var baseURL = "https://api.ogier.io/";
 userSettings();
+var cont;
+var username;
 var name = '',
     surname = '',
     company = '',
@@ -69,55 +71,103 @@ function userSettings() {
             },
         }).then(response => response.json())
         .then(u => {
-            (function($) {
-                "use strict";
-                email = u.email;
-                name = u.name;
-                type = u.accountType;
-                surname = u.surname;
-            })(jQuery);
+            var total = 0;
+            var y = 9;
+            email = u.email;
+            name = u.name;
+            username = u.username;
+            console.log(u)
+            type = u.accountType;
+            surname = u.surname;
+            if (type === 'business')
+                total = 30;
+            if (type === 'corporate')
+                total = 90;
+
+
+
+            fetch(baseURL + "card/mine/", {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    },
+                })
+                .then(response => response.json())
+                .then(result => {
+                    for (var i = result.myCards.length; i > 0; i--) {
+                        if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 3) {
+                            total--;
+                        }
+                    }
+                    console.log(total)
+
+                    if (type === 'personal' || total < 0) {
+                        document.getElementById('cnotif').innerHTML = '<i style="margin-top:25px;"> Ready to purchase a new ogier card? </i>';
+                        document.getElementById('orderNow').innerHTML = 'Purchase';
+                        document.getElementById('planStuff').innerHTML = 'Personal Plan';
+                        cont = payForCard;
+                    }
+                    if (type === 'business' && total <= 30 && u.role === y && total >= 0) {
+                        document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have ${total} ogier cards left to order.`;
+                        document.getElementById('orderNow').innerHTML = 'Order Now';
+                        document.getElementById('planStuff').innerHTML = 'Business Plan';
+                        cont = orderNow;
+                    } else if (type === 'business' && total <= 30 && u.role !== y && total >= 0) {
+                        document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have to pay for the Business Plan that you have chosen while ordering this card.`;
+                        document.getElementById('orderNow').innerHTML = 'Purchase';
+                        document.getElementById('planStuff').innerHTML = 'Business Plan';
+                        cont = orderBusiness;
+                    }
+                    if (type === 'corporate' && total <= 90 && u.role === y && total >= 0) {
+                        document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have ${total} ogier cards left to order.`;
+                        document.getElementById('orderNow').innerHTML = 'Order Now';
+                        document.getElementById('planStuff').innerHTML = 'Corporate Plan';
+                        cont = orderNow;
+                    } else if (type === 'corporate' && total <= 90 && u.role !== y && total >= 0) {
+                        document.getElementById('cnotif').innerHTML = ` Hello ${u.name} ${u.surname}! You have to pay for the Corporate Plan that you have chosen while ordering this card.`;
+                        document.getElementById('orderNow').innerHTML = 'Purchase';
+                        document.getElementById('planStuff').innerHTML = 'Corporate Plan';
+                        cont = orderCorporate;
+                    }
+
+
+                })
+                .catch(error => console.log('error', error));
 
         })
         .catch(error => console.log('error', error))
 }
 
 
+function orderNow() { return "minus one"; }
+
+function orderBusiness() { return payForCard(7); }
+
+function orderCorporate() { return payForCard(8); }
+
 function orderNewCard() {
-    fetch(baseURL + "who/am/i/", {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-            },
-        })
-        .then(response => response.json())
-        .then(result => {
-            newCard = {
-                name,
-                surname,
-                email: result.email,
-                address: '',
-                landingPage,
-                tittle: position,
-                timeCreated: Date(),
-                catchLine: '',
-                company: company,
-                facebook,
-                instagram,
-                linkedIn,
-                twitter,
-                designURL: designUrl,
-                phone,
-                prevVersionID: null,
-                userID: result.username,
-            };
-            (function($) {
-                "use strict";
-
-            })(jQuery);
-
-        })
-        .catch(error => console.log('error', error));
+    return {
+        name,
+        surname,
+        email: email,
+        address: '',
+        landingPage,
+        tittle: position,
+        timeCreated: Date(),
+        catchLine: '',
+        company: company,
+        facebook,
+        instagram,
+        linkedIn,
+        twitter,
+        designURL: designUrl,
+        phone,
+        prevVersionID: null,
+        userID: username,
+    };
 };
+
+
 
 function next() {
     var go = true;
@@ -142,6 +192,15 @@ function next() {
             document.getElementById('forsurname').style.color = "grey";
             surname = $('#csurname').val().toLowerCase();
             surname = surname.charAt(0).toUpperCase() + surname.slice(1);
+        }
+        if ($('#cmail').val() === $('#control').val()) {
+            document.getElementById('formail').innerHTML = 'Email is required*';
+            document.getElementById('formail').style.color = "red";
+            go = false;
+        } else {
+            document.getElementById('formail').innerHTML = 'Email*';
+            document.getElementById('forsurname').style.color = "grey";
+            email = $('#cmail').val().toLowerCase();
         }
         if ($('#ccompany').val() === $('#control').val()) {
             document.getElementById('forcompany').innerHTML = 'Company is required*';
@@ -198,21 +257,19 @@ function next() {
                 `<h5 style="color:red;"> Please check your data and try again! <br>` +
                 `If you don't have a design already,<br>  <b> <a href="#"> talk with our designers. </a> </b>  </h5>`;
         } else {
-            orderNewCard();
-            if (type === 'Business') {
-                nextBusiness();
-            } else {
-                nextIndividual();
-            }
+            cont();
+
         }
 
     })(jQuery);
 }
 
 
-function payForCard(plan) {
+function payForCard(plan = 1) {
+    newCard = orderNewCard();
     newCard.plan = plan;
     newCard.status = 7;
+    console.log(newCard)
     swal_ajax('load');
     location.hash = "";
     (function($) {
