@@ -4,7 +4,7 @@
 var storage = firebase.storage();
 var storageRef = storage.ref();
 var designs = storageRef.child('designs');
-var baseURL = 'http://localhost:3000/'; // "https://api.ogier.io/"; 
+var baseURL = "https://api.ogier.io/"; // 'http://localhost:3000/'; //
 var allMyCardIds = []
 var total = 0;
 headers = {

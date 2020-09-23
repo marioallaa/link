@@ -22,7 +22,7 @@ firebase.initializeApp(firebaseConfig);
 
 (function($) {
     "use strict";
-    var baseURL = 'http://localhost:3000/'; // "https://api.ogier.io/";
+    var baseURL = "https://api.ogier.io/"; // 'http://localhost:3000/'; // "https://api.ogier.io/";
 
     /* Preloader */
     $(window).on('load', function() {
