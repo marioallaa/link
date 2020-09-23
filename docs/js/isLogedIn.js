@@ -1,4 +1,4 @@
-var baseURL = "https://api.ogier.io/";
+var baseURL = 'http://localhost:3000/'; // "https://api.ogier.io/";
 var token = localStorage.getItem('token')
 fetch(baseURL + "who/am/i/", {
         headers: {

@@ -4,8 +4,9 @@
 var storage = firebase.storage();
 var storageRef = storage.ref();
 var designs = storageRef.child('designs');
-var baseURL = "https://api.ogier.io/";
+var baseURL = 'http://localhost:3000/'; // "https://api.ogier.io/"; 
 var allMyCardIds = []
+var total = 0;
 headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -52,13 +53,43 @@ function checkStatusCard(id) {
             <td>${c.timeCreated.slice(3, 21)} </td>
             <td style="text-align: center;">
                 <i class="badge-pill align-self-center" style="text-align: center; color: black;font-size: 15px;  background-color: ;  padding-bottom:2px;">
-                    Basic
+                    Personal
                 </i>
             </td>
         </tr>
         <tr class="whitew">
         <td class="col-md-12" colspan="4">
       <div class="col col-md-12" id="cardContainer${c.id}" style="display: flex; align-items: center; justify-content: center;"></div></td>
+                </tr>`;
+        if (c.plan == 7) return `
+        <tr onclick="generateForBasicCard(${c.id})">
+            <td>${k = k + 1}</td>
+            <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
+            <td>${c.timeCreated.slice(3, 21)} </td>
+            <td style="text-align: center;">
+                <i class="badge-pill align-self-center" style="text-align: center; color: black;font-size: 15px;  background-color: ;  padding-bottom:2px;">
+                    Business
+                </i>
+            </td>
+        </tr>
+        <tr class="whitew">
+        <td class="col-md-12" colspan="4">
+        <div class="col col-md-12" id="cardContainer${c.id}" style="display: flex; align-items: center; justify-content: center;"></div></td>
+                </tr>`;
+        if (c.plan == 8) return `
+        <tr onclick="generateForBasicCard(${c.id})">
+            <td>${k = k + 1}</td>
+            <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
+            <td>${c.timeCreated.slice(3, 21)} </td>
+            <td style="text-align: center;">
+                <i class="badge-pill align-self-center" style="text-align: center; color: black;font-size: 15px;  background-color: ;  padding-bottom:2px;">
+                    Business
+                </i>
+            </td>
+        </tr>
+        <tr class="whitew">
+        <td class="col-md-12" colspan="4">
+        <div class="col col-md-12" id="cardContainer${c.id}" style="display: flex; align-items: center; justify-content: center;"></div></td>
                 </tr>`;
         if (c.plan == 2 && c.status != '!ACTIVE') return `
         <tr onclick="generateCard(${c.id}, 0);">
@@ -135,7 +166,7 @@ function checkStatusCard(id) {
     }
 
     window.generateForBasicCard = function(id) {
-        document.getElementById('cardContainer' + id).innerHTML = "This is a Basic Ogier Card, You cannot change your data!"
+        document.getElementById('cardContainer' + id).innerHTML = "More functionalities will be available soon!"
     }
 
 
@@ -148,6 +179,7 @@ function checkStatusCard(id) {
         $('#lightBoxContainer').html(``);
         $('#putCardHere').html(``);
         k = 0;
+
         fetch(baseURL + "card/mine/", {
                 headers: {
                     'Content-Type': 'application/json',
@@ -157,9 +189,20 @@ function checkStatusCard(id) {
             .then(response => response.json())
             .then(result => {
                 for (var i = result.myCards.length; i > 0; i--) {
+                    if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 1) {
+                        total++;
+                    }
+                    if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 7) {
+                        total++;
+                    }
+                    if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 8) {
+                        total++;
+                    }
                     $('#putCardHere').append(cardTableRow(result.myCards[i - 1]));
                     allMyCardIds.push(result.myCards[result.myCards.length - i].id)
                 }
+
+                userSettings();
             })
             .catch(error => console.log('error', error));
     }
@@ -455,7 +498,8 @@ function checkStatusCard(id) {
 
 })(jQuery);
 
-userSettings();
+
+// userSettings();
 
 function userSettings() {
     fetch(baseURL + "who/am/i", {
@@ -469,7 +513,21 @@ function userSettings() {
                 "use strict";
                 $('#nameHereGreeting').html('Welcome ' + u.name);
                 $('#settingsContent').html(generateSettings(u));
+                var type = u.accountType;
+                surname = u.surname;
+                if (type === 'business')
+                    total = (total - 30) * -1;
+                if (type === 'corporate')
+                    total = (total - 90) * -1;
 
+                var l = `Greetings ${u.username}!`;
+                if (type === 'business')
+                    l = `Greetings ${u.username}, you have ${total} ogier cards left from your Business Plan Account.`;
+                if (type === 'corporate')
+                    l = `Greetings ${u.username}, you have ${total} ogier cards left from your Corporate Plan Account.`;
+
+                console.log(l)
+                document.getElementById('countCardsS').innerHTML = l;
             })(jQuery);
 
         })

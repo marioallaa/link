@@ -1,11 +1,13 @@
 var storage = firebase.storage();
 var storageRef = storage.ref();
 var designs = storageRef.child('designs');
-var baseURL = "https://api.ogier.io/";
+var baseURL = 'http://localhost:3000/'; // "https://api.ogier.io/";
 userSettings();
 var cont;
 var username;
 var name = '',
+    tp = '',
+    nr = 0,
     surname = '',
     company = '',
     position = '',
@@ -76,8 +78,8 @@ function userSettings() {
             email = u.email;
             name = u.name;
             username = u.username;
-            console.log(u)
             type = u.accountType;
+            tp = type
             surname = u.surname;
             if (type === 'business')
                 total = 30;
@@ -95,11 +97,17 @@ function userSettings() {
                 .then(response => response.json())
                 .then(result => {
                     for (var i = result.myCards.length; i > 0; i--) {
-                        if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 3) {
+                        if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 1) {
+                            total--;
+                        }
+                        if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 7) {
+                            total--;
+                        }
+                        if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 8) {
                             total--;
                         }
                     }
-                    console.log(total)
+                    nr = total;
 
                     if (type === 'personal' || total < 0) {
                         document.getElementById('cnotif').innerHTML = '<i style="margin-top:25px;"> Ready to purchase a new ogier card? </i>';
@@ -111,23 +119,23 @@ function userSettings() {
                         document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have ${total} ogier cards left to order.`;
                         document.getElementById('orderNow').innerHTML = 'Order Now';
                         document.getElementById('planStuff').innerHTML = 'Business Plan';
-                        cont = orderNow;
+                        cont = orderBusiness;
                     } else if (type === 'business' && total <= 30 && u.role !== y && total >= 0) {
-                        document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have to pay for the Business Plan that you have chosen while ordering this card.`;
+                        document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have to pay € 236.31 for the Business Plan that you have chosen while ordering this card.`;
                         document.getElementById('orderNow').innerHTML = 'Purchase';
                         document.getElementById('planStuff').innerHTML = 'Business Plan';
-                        cont = orderBusiness;
+                        cont = payBusiness;
                     }
                     if (type === 'corporate' && total <= 90 && u.role === y && total >= 0) {
                         document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have ${total} ogier cards left to order.`;
                         document.getElementById('orderNow').innerHTML = 'Order Now';
                         document.getElementById('planStuff').innerHTML = 'Corporate Plan';
-                        cont = orderNow;
+                        cont = orderCorporate;
                     } else if (type === 'corporate' && total <= 90 && u.role !== y && total >= 0) {
-                        document.getElementById('cnotif').innerHTML = ` Hello ${u.name} ${u.surname}! You have to pay for the Corporate Plan that you have chosen while ordering this card.`;
+                        document.getElementById('cnotif').innerHTML = ` Hello ${u.name} ${u.surname}! You have to pay € 699.00 for the Corporate Plan that you have chosen while ordering this card.`;
                         document.getElementById('orderNow').innerHTML = 'Purchase';
                         document.getElementById('planStuff').innerHTML = 'Corporate Plan';
-                        cont = orderCorporate;
+                        cont = payCorporate;
                     }
 
 
@@ -141,9 +149,13 @@ function userSettings() {
 
 function orderNow() { return "minus one"; }
 
-function orderBusiness() { return payForCard(7); }
+function orderBusiness() { return justOrderNewCard(7); }
 
-function orderCorporate() { return payForCard(8); }
+function orderCorporate() { return justOrderNewCard(8); }
+
+function payBusiness() { return payForCard(7); }
+
+function payCorporate() { return payForCard(8); }
 
 function orderNewCard() {
     return {
@@ -166,6 +178,7 @@ function orderNewCard() {
         userID: username,
     };
 };
+var a = 'ACTIVE';
 
 
 
@@ -263,6 +276,51 @@ function next() {
 
     })(jQuery);
 }
+
+
+
+function justOrderNewCard(plan) {
+    newCard = orderNewCard();
+    newCard.plan = plan;
+    newCard.status = a;
+    swal_ajax('load');
+    location.hash = "";
+    (function($) {
+        "use strict";
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify(newCard),
+            url: baseURL + "card/create",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+            beforeSend: function() {
+                swal_ajax('load');
+            },
+            success: function(json) {
+                swal_ajax('success');
+                nr--;
+                var d = { msg: `${username} just ordered a new ogier card for ${newCard.name + " " + newCard.surname}. ${username} has ${nr} cards left from his ${tp}. Card ID ${json.PaymentSaved.OgierCard}, Ogier card design url: ${newCard.designURL}` }
+                console.log(d);
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "telegram/send/msg",
+                    data: d,
+                    success: function(text) { document.location.href = '/user/' },
+                    error: function(error) { console.log('error', error) }
+                });
+                // setTimeout(document.location.href = json.gotoLink, 250);
+            },
+            error: function() {
+                swal_ajax('error');
+                return false;
+            }
+        });
+
+    })(jQuery);
+}
+
 
 
 function payForCard(plan = 1) {
