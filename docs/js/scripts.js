@@ -174,6 +174,7 @@ firebase.initializeApp(firebaseConfig);
     });
 
 
+
     /* Sign Up Form */
     $("#signUpForm").validator().on("submit", function(event) {
         if (event.isDefaultPrevented()) {
@@ -187,6 +188,51 @@ firebase.initializeApp(firebaseConfig);
         }
     });
 
+
+    /* Demo Form */
+    $("#4signUpForm").validator().on("submit", function(event) {
+        if (event.isDefaultPrevented()) {
+            // handle the invalid form...
+            rformError();
+            rsubmitMSG(false, "This field is required!");
+        } else {
+            // everything looks good!
+            event.preventDefault();
+            rsubmitForm();
+        }
+    });
+
+
+
+    function rsubmitForm() {
+
+        var data = {
+            email: $("#4email").val().toLowerCase(),
+            name: $("#4name").val(),
+            surname: $("#4surname").val(),
+            company: $("#4company").val().toLowerCase(),
+            industry: $("#4industry").val(),
+            role: $("#4role").val(),
+            phone: $("#4phone").val().toLowerCase(),
+            terms: $("#4terms").val(),
+        }
+        var d = { msg: `${data.name} ${data.surname} who works as a ${data.role} at ${data.company} (${data.industry}) want's to schedule a demo. \n   CONTACT INFO \nemail: ${data.email} \nphone: ${data.phone}` };
+        $.ajax({
+            type: "POST",
+            url: baseURL + "telegram/send/msg",
+            data: d,
+            success: function(text) {
+                rformSuccess();
+                rsubmitMSG(false, "We will be in touch shortly!");
+            },
+            error: function(text) {
+                rformError();
+                rsubmitMSG(false, "There was a problem, please try again later!");
+            }
+        });
+    }
+
+
     function ssubmitForm() {
         // initiate variables with form content
         var hashObj = new jsSHA("SHA-512", "TEXT", { numRounds: 1 });
@@ -196,11 +242,6 @@ firebase.initializeApp(firebaseConfig);
         var username = $("#suname").val().toLowerCase();
         var password = $("#spassword").val();
         var type = $("#sType").val();
-        if (type === "Business") {
-            sformError();
-            ssubmitMSG(false, "Business Accounts are not supported yet!");
-            return;
-        }
         hashObj.update(password);
         password = hashObj.getHash("HEX");
 
@@ -272,6 +313,27 @@ firebase.initializeApp(firebaseConfig);
             var msgClasses = "h3 text-center";
         }
         $("#smsgSubmit").removeClass().addClass(msgClasses).text(msg);
+    }
+
+    function rformSuccess() {
+        $("#4signUpForm")[0].reset();
+        ssubmitMSG(true, "Submitted");
+        $("input").removeClass('notEmpty'); // resets the field label after submission
+    }
+
+    function rformError() {
+        $("#signUpForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+            $(this).removeClass();
+        });
+    }
+
+    function rsubmitMSG(valid, msg) {
+        if (valid) {
+            var msgClasses = "h3 text-center tada animated";
+        } else {
+            var msgClasses = "h3 text-center";
+        }
+        $("#4submit").removeClass().addClass(msgClasses).text(msg);
     }
 
 
@@ -359,7 +421,9 @@ firebase.initializeApp(firebaseConfig);
         // initiate variables with form content
         var email = $("#nemail").val();
         var terms = $("#nterms").val();
-        var d = { msg: `${email} wants to subscribe to your news letter, ${terms}` }
+        var d = { msg: `
+                    $ { email }
+                    wants to subscribe to your news letter, $ { terms } ` }
         console.log(d);
         $.ajax({
             type: "POST",
