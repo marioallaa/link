@@ -34,13 +34,13 @@ fetch(baseURL + "card/give/me/" + id, {})
 
         if (result.facebook) {
             h = true;
-            if (result.landingPage.startsWith('https://') || result.landingPage.startsWith('http://')) {
-                document.getElementById('facebook').innerHTML = `<a href="${result.landingPage}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
+            if (result.facebook.startsWith('https://') || result.facebook.startsWith('http://')) {
+                document.getElementById('facebook').innerHTML = `<a href="${result.facebook}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-globe fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             Facebook </div> </div></button> </a>`
             } else {
-                var url = 'http://facebook.com/' + result.landingPage;
+                var url = 'http://facebook.com/' + result.facebook;
                 document.getElementById('facebook').innerHTML = `<a href="${url}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-facebook fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
@@ -49,13 +49,13 @@ fetch(baseURL + "card/give/me/" + id, {})
         }
         if (result.instagram) {
             h = true;
-            if (result.landingPage.startsWith('https://') || result.landingPage.startsWith('http://')) {
-                document.getElementById('ig').innerHTML = `<a href="${result.landingPage}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
+            if (result.instagram.startsWith('https://') || result.instagram.startsWith('http://')) {
+                document.getElementById('ig').innerHTML = `<a href="${result.instagram}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-instagram fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             Instagram </div> </div></button> </a>`
             } else {
-                var url = 'http://instagram.com/' + result.landingPage;
+                var url = 'http://instagram.com/' + result.facebook;
                 document.getElementById('ig').innerHTML = `<a href="${url}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-instagram fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
@@ -64,13 +64,13 @@ fetch(baseURL + "card/give/me/" + id, {})
         }
         if (result.twitter) {
             h = true;
-            if (result.landingPage.startsWith('https://') || result.landingPage.startsWith('http://')) {
-                document.getElementById('twitter').innerHTML = `<a href="${result.landingPage}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
+            if (result.twitter.startsWith('https://') || result.twitter.startsWith('http://')) {
+                document.getElementById('twitter').innerHTML = `<a href="${result.twitter}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-twitter fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             Twitter </div> </div></button> </a>`
             } else {
-                var url = 'http://twitter.com/' + result.landingPage;
+                var url = 'http://twitter.com/' + result.twitter;
                 document.getElementById('twitter').innerHTML = `<a href="${url}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-twitter fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
@@ -79,13 +79,13 @@ fetch(baseURL + "card/give/me/" + id, {})
         }
         if (result.linkedIn) {
             h = true;
-            if (result.landingPage.startsWith('https://') || result.landingPage.startsWith('http://')) {
-                document.getElementById('linkedIn').innerHTML = `<a href="${result.landingPage}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
+            if (result.linkedIn.startsWith('https://') || result.linkedIn.startsWith('http://')) {
+                document.getElementById('linkedIn').innerHTML = `<a href="${result.linkedIn}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-lnikedin fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             LinkedIn </div> </div></button> </a>`
             } else {
-                var url = 'http://linkedin.com/in/' + result.landingPage;
+                var url = 'https://linkedin.com/in/' + result.linkedIn;
                 document.getElementById('twitter').innerHTML = `<a href="${url}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-linkedin fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
