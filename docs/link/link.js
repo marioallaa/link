@@ -40,7 +40,7 @@ fetch(baseURL + "card/give/me/" + id, {})
                                                             <i class="fab fa-globe fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             Facebook </div> </div></button> </a>`
             } else {
-                var url = 'http://facebook.com/' + result.facebook;
+                var url = 'https://facebook.com/' + result.facebook;
                 document.getElementById('facebook').innerHTML = `<a href="${url}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-facebook fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
@@ -55,7 +55,7 @@ fetch(baseURL + "card/give/me/" + id, {})
                                                             <i class="fab fa-instagram fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             Instagram </div> </div></button> </a>`
             } else {
-                var url = 'http://instagram.com/' + result.facebook;
+                var url = 'https://instagram.com/' + result.facebook;
                 document.getElementById('ig').innerHTML = `<a href="${url}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-instagram fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
@@ -70,7 +70,7 @@ fetch(baseURL + "card/give/me/" + id, {})
                                                             <i class="fab fa-twitter fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             Twitter </div> </div></button> </a>`
             } else {
-                var url = 'http://twitter.com/' + result.twitter;
+                var url = 'https://twitter.com/' + result.twitter;
                 document.getElementById('twitter').innerHTML = `<a href="${url}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-twitter fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
