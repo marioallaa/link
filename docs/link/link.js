@@ -14,6 +14,7 @@ fetch(baseURL + "card/give/me/" + id, {})
         if (result === undefined) {
             idk();
         }
+        console.log(result);
         var h = false;
         document.getElementById('linksName').innerHTML = `${result.name} ${result.surname}'s ogier links`;
         if (result.landingPage) {
@@ -86,7 +87,7 @@ fetch(baseURL + "card/give/me/" + id, {})
                                                             LinkedIn </div> </div></button> </a>`
             } else {
                 var url = 'https://linkedin.com/in/' + result.linkedIn;
-                document.getElementById('twitter').innerHTML = `<a href="${url}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
+                document.getElementById('linkedIn').innerHTML = `<a href="${url}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-linkedin fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             LinkedIn </div> </div></button> </a>`
