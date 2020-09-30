@@ -38,7 +38,7 @@ fetch(baseURL + "card/give/me/" + id, {})
             if (result.facebook.startsWith('https://') || result.facebook.startsWith('http://')) {
                 document.getElementById('facebook').innerHTML = `<a href="${result.facebook}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
-                                                            <i class="fab fa-globe fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
+                                                            <i class="fab fa-facebook fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             Facebook </div> </div></button> </a>`
             } else {
                 var url = 'https://facebook.com/' + result.facebook;
@@ -83,7 +83,7 @@ fetch(baseURL + "card/give/me/" + id, {})
             if (result.linkedIn.startsWith('https://') || result.linkedIn.startsWith('http://')) {
                 document.getElementById('linkedIn').innerHTML = `<a href="${result.linkedIn}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
-                                                            <i class="fab fa-lnikedin fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
+                                                            <i class="fab fa-linkedin fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             LinkedIn </div> </div></button> </a>`
             } else {
                 var url = 'https://linkedin.com/in/' + result.linkedIn;
