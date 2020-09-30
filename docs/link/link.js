@@ -93,6 +93,29 @@ fetch(baseURL + "card/give/me/" + id, {})
                                                             LinkedIn </div> </div></button> </a>`
             }
         }
+        if (result.email) {
+            h = true;
+            document.getElementById('email').innerHTML = `<a href="mailto:${result.email}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
+                                                            <div class="row">
+                                                            <i class="fa fa-envelope fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
+                                                            ${result.email} </div> </div></button> </a>`
+
+        }
+        if (result.phone) {
+            h = true;
+            if (result.phone.startsWith('00') || result.phone.startsWith('+')) {
+                document.getElementById('whatsapp').innerHTML = `<a href="https://api.whatsapp.com/send?phone=${result.phone}&text=Your ogier card is cool&source=ogiercard&data=ogiercard&app_absent=ogiercard" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
+                                                            <div class="row">
+                                                            <i class="fab fa-whatsapp fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
+                                                            ${result.phone} </div> </div></button> </a>`
+            } else {
+                document.getElementById('whatsapp').innerHTML = `<a href="tel:${result.phone}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
+                                                            <div class="row">
+                                                            <i class="fa fa-phone fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
+                                                            ${result.phone} </div> </div></button> </a>`
+            }
+
+        }
         if (!h) {
             idk()
         }
@@ -105,11 +128,11 @@ function idk() {
             </div>
             <div class="image-container">
             <div class="img-wrapper">
-                <img class="img-fluid" src="/images/logo-b.png" style="height: 350px; width: 350px" alt="alternative">
+                <img class="img-fluid" src="/images/logo-b.png" style="width: 350px" alt="alternative">
             </div>
         </div>
             <div class="form-group">
-                <h5 style="color: grey;"> no links found :( </h3>
+                <h5 style="color: grey;"> no card found :( </h3>
             </div> `
 }
 
