@@ -181,8 +181,9 @@ function checkStatusCard(id) {
                 })
                 .then(response => response.json())
                 .then(c => {
+                    console.log(cardView(c)[6])
                     $('#lightBoxContainer').append(cardView(c)[6]);
-                    location.hash = `card${c.id}ogierLinks`
+                    location.hash = `ogierLink${c.id}`
                 })
                 .catch(error => console.log('error', error));
 
@@ -438,6 +439,9 @@ function checkStatusCard(id) {
             <div class="row">
                 <div class="col-md-12">
                     <h3 class="">Edit Card Links</h3>
+                    <a class="col-md-12" href="https://ogier.io/link?c=${card.id}" style="margin-top: 12px;">
+                    Go to your ogier link..
+                    </a>
                 </div>
             </div>
             <div class="row">
@@ -576,7 +580,7 @@ function checkStatusCard(id) {
         </div>
     </div>
     `, `
-    <div id="analytics${card.id}" class="overlay">
+    <div id="ogierLink${card.id}" class="overlay">
         <div class="popup">
 		<a class="close" href="#">&times;</a>
               ${views[5]}
@@ -607,9 +611,9 @@ function userSettings() {
 
                 var l = `Greetings ${u.username}!`;
                 if (type === 'business')
-                    l = `Greetings ${u.username}, you have ${ctotal} ogier cards left from your Business Plan Account.`;
+                    l = `Greetings ${u.name} ${u.surname}, you have ${btotal} ogier cards left from your Business Plan Account.`;
                 if (type === 'corporate')
-                    l = `Greetings ${u.username}, you have ${ctotal} ogier cards left from your Corporate Plan Account.`;
+                    l = `Greetings ${u.name} ${u.surname}, you have ${ctotal} ogier cards left from your Corporate Plan Account.`;
 
                 console.log(l)
                 document.getElementById('countCardsS').innerHTML = l;
@@ -1044,7 +1048,7 @@ function editLink(id) {
                 result.surname = $("#surname" + id).val();
                 result.email = $("#email" + id).val();
                 result.address = $("#address" + id).val();
-                result.landingPage = ("#url" + id).val();
+                result.landingPage = $("#url" + id).val();
                 result.facebook = $("#facebook" + id).val();
                 result.instagram = $("#instagram" + id).val();
                 result.linkedIn = $("#ln" + id).val();
