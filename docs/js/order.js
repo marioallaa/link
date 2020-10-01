@@ -73,7 +73,8 @@ function userSettings() {
             },
         }).then(response => response.json())
         .then(u => {
-            var total = 0;
+            var btotal = 0;
+            var ctotal = 0;
             var y = 9;
             email = u.email;
             name = u.name;
@@ -98,13 +99,13 @@ function userSettings() {
                 .then(result => {
                     for (var i = result.myCards.length; i > 0; i--) {
                         if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 1) {
-                            total--;
+
                         }
                         if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 7) {
-                            total--;
+                            btotal--;
                         }
                         if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 8) {
-                            total--;
+                            ctotal--;
                         }
                     }
                     nr = total;
@@ -116,7 +117,7 @@ function userSettings() {
                         cont = payForCard;
                     }
                     if (type === 'business' && total <= 30 && u.role === y && total >= 0) {
-                        document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have ${total} ogier cards left to order.`;
+                        document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have ${btotal} ogier cards left to order.`;
                         document.getElementById('orderNow').innerHTML = 'Order Now';
                         document.getElementById('planStuff').innerHTML = 'Business Plan';
                         cont = orderBusiness;
@@ -127,7 +128,7 @@ function userSettings() {
                         cont = payBusiness;
                     }
                     if (type === 'corporate' && total <= 90 && u.role === y && total >= 0) {
-                        document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have ${total} ogier cards left to order.`;
+                        document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have ${ctotal} ogier cards left to order.`;
                         document.getElementById('orderNow').innerHTML = 'Order Now';
                         document.getElementById('planStuff').innerHTML = 'Corporate Plan';
                         cont = orderCorporate;

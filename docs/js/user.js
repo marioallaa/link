@@ -6,7 +6,8 @@ var storageRef = storage.ref();
 var designs = storageRef.child('designs');
 var baseURL = "https://api.ogier.io/"; // 'http://localhost:3000/'; //
 var allMyCardIds = []
-var total = 0;
+var btotal = 30;
+var ctotal = 90;
 headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -166,7 +167,27 @@ function checkStatusCard(id) {
     }
 
     window.generateForBasicCard = function(id) {
-        document.getElementById('cardContainer' + id).innerHTML = "More functionalities will be available soon!"
+        if (prevId) {
+            $(`#cardContainer${prevId}`).html("");
+        }
+        prevId = id;
+        (function($) {
+            "use strict";
+            fetch(baseURL + "card/give/me/" + id, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    },
+                })
+                .then(response => response.json())
+                .then(c => {
+                    $('#lightBoxContainer').append(cardView(c)[6]);
+                    location.hash = `card${c.id}ogierLinks`
+                })
+                .catch(error => console.log('error', error));
+
+        })(jQuery);
+
     }
 
 
@@ -193,10 +214,10 @@ function checkStatusCard(id) {
                         total++;
                     }
                     if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 7) {
-                        total++;
+                        btotal--;
                     }
                     if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 8) {
-                        total++;
+                        ctotal--;
                     }
                     $('#putCardHere').append(cardTableRow(result.myCards[i - 1]));
                     allMyCardIds.push(result.myCards[result.myCards.length - i].id)
@@ -412,7 +433,68 @@ function checkStatusCard(id) {
                 </div>
             </div>
         </div>`;
-        return [cardData, cardDesign, cardPromotion, cardServices, cardAnalytics]
+        var ogierLinkData = `
+        <form id="card${card.id}ogierLinks"  style="padding:9px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="">Edit Card Links</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="name${card.id}">Name</label>
+                    <input type="text" class="form-control" value="${card.name}" id="name${card.id}" name="name" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="surname${card.id}">Surname</label>
+                    <input type="text" class="form-control" value="${card.surname}"  id="surname${card.id}" name="email" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="email${card.id}">Email</label>
+                    <input type="text" class="form-control" value="${card.email}" id="email${card.id}" name="email" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="phone${card.id}">Phone</label>
+                    <input type="text" class="form-control" value="${card.phone}" id="email${card.id}" name="email" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="url${card.id}">Landing Page</label>
+                    <input type="text" class="form-control" value="${card.landingPage}" id="url${card.id}" name="Landing Page" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="address${card.id}">Address</label>
+                    <input type="text" class="form-control" value="${card.address}" id="address${card.id}" name="address" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="facebook${card.id}">Facebook</label>
+                    <input name="Facebook" type="text" value="${card.facebook}" class="form-control" id="facebook${card.id}"></input>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="instagram${card.id}">Instagram</label>
+                    <input name="Instagram" type="text" value="${card.instagram}" class="form-control" id="instagram${card.id}"></input>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="ln${card.id}">LinkedIn</label>
+                    <input name="LinkedIn" type="text" value="${card.linkedIn}" class="form-control" id="ln${card.id}"></input>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="twitter">Twitter</label>
+                    <input name="Twitter${card.id}" type="text" value="${card.twitter}" class="form-control" id="twitter${card.id}"></input>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+            <button type="button" onClick="editLink(${card.id});" style="color: white;" class="btn black save-update col-md-5 send-form">Update</button>
+            <!--button type="button" onClick="deactivate(${card.id});" style="color: white;" class="btn black save-update col-md-5 send-form"> Deactivate</button-->
+            </div>
+        </div>`;
+
+        return [cardData, cardDesign, cardPromotion, cardServices, cardAnalytics, ogierLinkData]
     }
 
 
@@ -493,6 +575,13 @@ function checkStatusCard(id) {
               ${views[4]}
         </div>
     </div>
+    `, `
+    <div id="analytics${card.id}" class="overlay">
+        <div class="popup">
+		<a class="close" href="#">&times;</a>
+              ${views[5]}
+        </div>
+    </div>
     `, ]
     }
 
@@ -515,16 +604,12 @@ function userSettings() {
                 $('#settingsContent').html(generateSettings(u));
                 var type = u.accountType;
                 surname = u.surname;
-                if (type === 'business')
-                    total = (total - 30) * -1;
-                if (type === 'corporate')
-                    total = (total - 90) * -1;
 
                 var l = `Greetings ${u.username}!`;
                 if (type === 'business')
-                    l = `Greetings ${u.username}, you have ${total} ogier cards left from your Business Plan Account.`;
+                    l = `Greetings ${u.username}, you have ${ctotal} ogier cards left from your Business Plan Account.`;
                 if (type === 'corporate')
-                    l = `Greetings ${u.username}, you have ${total} ogier cards left from your Corporate Plan Account.`;
+                    l = `Greetings ${u.username}, you have ${ctotal} ogier cards left from your Corporate Plan Account.`;
 
                 console.log(l)
                 document.getElementById('countCardsS').innerHTML = l;
@@ -911,6 +996,59 @@ function updateValue(id) {
                 result.instagram = ig;
                 result.linkedIn = ln;
                 result.twitter = tw;
+
+                $.ajax({
+                    type: "POST",
+                    data: JSON.stringify(result),
+                    url: baseURL + "card/update",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    },
+                    beforeSend: function() {
+                        swal_ajax('load');
+                    },
+                    success: function(json) {
+                        swal_ajax('success');
+                        getData();
+                    },
+                    error: function() {
+                        swal_ajax('error');
+                        return false;
+                    }
+                });
+
+            })
+            .catch(error => console.log('error', error));
+
+
+    })(jQuery);
+}
+
+
+function editLink(id) {
+    (function($) {
+        "use strict";
+        location.hash = "";
+
+
+        fetch(baseURL + "card/give/me/" + id, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+            })
+            .then(response => response.json())
+            .then(result => {
+                result.name = $("#name" + id).val();
+                result.surname = $("#surname" + id).val();
+                result.email = $("#email" + id).val();
+                result.address = $("#address" + id).val();
+                result.landingPage = ("#url" + id).val();
+                result.facebook = $("#facebook" + id).val();
+                result.instagram = $("#instagram" + id).val();
+                result.linkedIn = $("#ln" + id).val();
+                result.twitter = $("#twitter" + id).val();
 
                 $.ajax({
                     type: "POST",
