@@ -73,8 +73,8 @@ function userSettings() {
             },
         }).then(response => response.json())
         .then(u => {
-            var btotal = 0;
-            var ctotal = 0;
+            var btotal = 30;
+            var ctotal = 90;
             var y = 9;
             email = u.email;
             name = u.name;
@@ -82,10 +82,6 @@ function userSettings() {
             type = u.accountType;
             tp = type
             surname = u.surname;
-            if (type === 'business')
-                total = 30;
-            if (type === 'corporate')
-                total = 90;
 
 
 
@@ -107,32 +103,31 @@ function userSettings() {
                         if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 8) {
                             ctotal--;
                         }
-                    }
-                    nr = total;
+                    
 
-                    if (type === 'personal' || total < 0) {
+                    if (type === 'personal' || ctotal <= 0 || btotal <= 0) {
                         document.getElementById('cnotif').innerHTML = '<i style="margin-top:25px;"> Ready to purchase a new ogier card? </i>';
                         document.getElementById('orderNow').innerHTML = 'Purchase';
                         document.getElementById('planStuff').innerHTML = 'Personal Plan';
                         cont = payForCard;
                     }
-                    if (type === 'business' && total <= 30 && u.role === y && total >= 0) {
+                    if (type === 'business' && btotal <= 30 && u.role === y && btotal >= 0) {
                         document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have ${btotal} ogier cards left to order.`;
                         document.getElementById('orderNow').innerHTML = 'Order Now';
                         document.getElementById('planStuff').innerHTML = 'Business Plan';
                         cont = orderBusiness;
-                    } else if (type === 'business' && total <= 30 && u.role !== y && total >= 0) {
+                    } else if (type === 'business' && btotal <= 30 && u.role !== y && btotal >= 0) {
                         document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have to pay € 236.31 for the Business Plan that you have chosen while ordering this card.`;
                         document.getElementById('orderNow').innerHTML = 'Purchase';
                         document.getElementById('planStuff').innerHTML = 'Business Plan';
                         cont = payBusiness;
                     }
-                    if (type === 'corporate' && total <= 90 && u.role === y && total >= 0) {
+                    if (type === 'corporate' && ctotal <= 90 && u.role === y && ctotal >= 0) {
                         document.getElementById('cnotif').innerHTML = `Hello ${u.name} ${u.surname}! You have ${ctotal} ogier cards left to order.`;
                         document.getElementById('orderNow').innerHTML = 'Order Now';
                         document.getElementById('planStuff').innerHTML = 'Corporate Plan';
                         cont = orderCorporate;
-                    } else if (type === 'corporate' && total <= 90 && u.role !== y && total >= 0) {
+                    } else if (type === 'corporate' && ctotal <= 90 && u.role !== y && ctotal >= 0) {
                         document.getElementById('cnotif').innerHTML = ` Hello ${u.name} ${u.surname}! You have to pay € 699.00 for the Corporate Plan that you have chosen while ordering this card.`;
                         document.getElementById('orderNow').innerHTML = 'Purchase';
                         document.getElementById('planStuff').innerHTML = 'Corporate Plan';
