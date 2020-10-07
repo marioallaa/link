@@ -212,7 +212,7 @@ function checkStatusCard(id) {
             .then(result => {
                 for (var i = result.myCards.length; i > 0; i--) {
                     if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 1) {
-                        total++;
+
                     }
                     if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 7) {
                         btotal--;

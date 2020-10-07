@@ -103,7 +103,8 @@ function userSettings() {
                         if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 8) {
                             ctotal--;
                         }
-                    
+                    }
+
 
                     if (type === 'personal' || ctotal <= 0 || btotal <= 0) {
                         document.getElementById('cnotif').innerHTML = '<i style="margin-top:25px;"> Ready to purchase a new ogier card? </i>';
