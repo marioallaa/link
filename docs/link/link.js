@@ -56,7 +56,7 @@ fetch(baseURL + "card/give/me/" + id, {})
                                                             <i class="fab fa-instagram fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             Instagram </div> </div></button> </a>`
             } else {
-                var url = 'https://instagram.com/' + result.facebook;
+                var url = 'https://instagram.com/' + result.instagram;
                 document.getElementById('ig').innerHTML = `<a href="${url}" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-instagram fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
@@ -103,7 +103,7 @@ fetch(baseURL + "card/give/me/" + id, {})
         }
         if (result.phone) {
             h = true;
-            if (result.phone.startsWith('00') || result.phone.startsWith('+')) {
+            if (result.phone.startsWith('+')) {
                 document.getElementById('whatsapp').innerHTML = `<a href="https://api.whatsapp.com/send?phone=${result.phone}&text=Your ogier card is cool&source=ogiercard&data=ogiercard&app_absent=ogiercard" target="_blank"><button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                                             <div class="row">
                                                             <i class="fab fa-whatsapp fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
