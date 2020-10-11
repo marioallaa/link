@@ -99,9 +99,11 @@ function userSettings() {
                         }
                         if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 7) {
                             btotal--;
+                            nr = btotal
                         }
                         if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 8) {
                             ctotal--;
+                            nr = ctotal
                         }
                     }
 
@@ -265,7 +267,7 @@ function next() {
         if (!go) {
             document.getElementById('cnotif').innerHTML =
                 `<h5 style="color:red;"> Please check your data and try again! <br>` +
-                `If you don't have a design already,<br>  <b> <a href="#"> talk with our designers. </a> </b>  </h5>`;
+                `If you don't have a design already,<br>  <b> <a href="https://detaixi.com"> talk with our designers. </a> </b>  </h5>`;
         } else {
             cont();
 
@@ -280,6 +282,7 @@ function justOrderNewCard(plan) {
     newCard = orderNewCard();
     newCard.plan = plan;
     newCard.status = a;
+    nr--;
     swal_ajax('load');
     location.hash = "";
     (function($) {
@@ -297,7 +300,6 @@ function justOrderNewCard(plan) {
             },
             success: function(json) {
                 swal_ajax('success');
-                nr--;
                 var d = { msg: `${username} just ordered a new ogier card for ${newCard.name + " " + newCard.surname}. ${username} has ${nr} cards left from his ${tp}. Card ID ${json.PaymentSaved.OgierCard}, Ogier card design url: ${newCard.designURL}` }
                 console.log(d);
                 $.ajax({
