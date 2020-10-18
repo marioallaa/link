@@ -31,7 +31,6 @@ function handleDrop(e) {
 function handleFiles(files) {
     swal_ajax('load');
     files = [...files]
-    console.log(files)
     var l = false
     var accept = ['pdf', 'docx', 'pptx', 'doc', "ppt", ]
     accept.forEach(a => {
@@ -41,7 +40,6 @@ function handleFiles(files) {
         }
     })
     if (!l) {
-        console.log(files[0])
         swal_ajax('error');
         var x = document.getElementById("designConfirm");
         x.innerHTML = x.innerHTML + `
@@ -249,8 +247,6 @@ function next() {
         instagram = $('#cig').val();
         linkedIn = $('#cln').val();
         twitter = $('#ctw').val();
-        console.log(designUrl)
-        console.log(go)
         if (designUrl === undefined || designUrl === null) {
             var x = document.getElementById("cdesign");
             go = false;
@@ -302,7 +298,7 @@ function justOrderNewCard(plan) {
             success: function(json) {
                 swal_ajax('success');
                 var d = { msg: `${username} just ordered a new ogier card for ${newCard.name + " " + newCard.surname}. ${username} has ${nr} cards left from his ${tp}. Card ID ${json.PaymentSaved.OgierCard}, Ogier card design url: ${newCard.designURL}` }
-                console.log(d);
+
                 $.ajax({
                     type: "POST",
                     url: baseURL + "telegram/send/msg",
@@ -327,7 +323,6 @@ function payForCard(plan = 1) {
     newCard = orderNewCard();
     newCard.plan = plan;
     newCard.status = 7;
-    console.log(newCard)
     swal_ajax('load');
     location.hash = "";
     (function($) {
@@ -346,7 +341,6 @@ function payForCard(plan = 1) {
             success: function(json) {
                 swal_ajax('success');
                 var d = { msg: `${newCard.name + " " + newCard.surname} Just ordered a new Card. Wait for payment and proceed with the order, Card ID ${json.PaymentSaved.OgierCard}` }
-                console.log(d);
                 $.ajax({
                     type: "POST",
                     url: baseURL + "telegram/send/msg",
