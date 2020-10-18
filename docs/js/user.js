@@ -1048,6 +1048,7 @@ function editLink(id) {
                 result.surname = $("#surname" + id).val();
                 result.email = $("#email" + id).val();
                 result.address = $("#address" + id).val();
+                result.phone = $("#phone" + id).val();
                 result.landingPage = $("#url" + id).val();
                 result.facebook = $("#facebook" + id).val();
                 result.instagram = $("#instagram" + id).val();

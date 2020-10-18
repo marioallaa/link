@@ -208,7 +208,8 @@ function next() {
         if ($('#cmail').val() === $('#control').val()) {
             document.getElementById('formail').innerHTML = 'Email is required*';
             document.getElementById('formail').style.color = "red";
-            go = false;
+            email = ""
+                // go = false;
         } else {
             document.getElementById('formail').innerHTML = 'Email*';
             document.getElementById('forsurname').style.color = "grey";
@@ -234,7 +235,7 @@ function next() {
             position = $('#ctitle').val();
         }
         if ($('#cphone').val() === $('#control').val()) {
-            document.getElementById('forphone').innerHTML = 'Phone number is equired*';
+            document.getElementById('forphone').innerHTML = 'Phone number is required*';
             document.getElementById('forphone').style.color = "red";
             go = false;
         } else {

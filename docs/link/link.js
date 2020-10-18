@@ -32,7 +32,6 @@ fetch(baseURL + "card/give/me/" + id, {})
                                                             ${result.landingPage} </div> </div></button> </a>`
             }
         }
-
         if (result.facebook) {
             h = true;
             if (result.facebook.startsWith('https://') || result.facebook.startsWith('http://')) {
@@ -99,7 +98,6 @@ fetch(baseURL + "card/give/me/" + id, {})
                                                             <div class="row">
                                                             <i class="fa fa-envelope fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             ${result.email} </div> </div></button> </a>`
-
         }
         if (result.phone) {
             h = true;
@@ -114,10 +112,17 @@ fetch(baseURL + "card/give/me/" + id, {})
                                                             <i class="fa fa-phone fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
                                                             ${result.phone} </div> </div></button> </a>`
             }
-
+        }
+        if (result.address) {
+            h = true;
+            document.getElementById('whatsapp').innerHTML = `<a href="https://www.google.com/search?q=${result.address}" target="_blank">
+                                    <button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
+                                    <div class="row">
+                                    <i class="fa fa-address fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
+                                    ${result.address} </div> </div></button> </a>`
         }
         if (!h) {
-            idk()
+            idk();
         }
     })
 
