@@ -118,8 +118,8 @@ fetch(baseURL + "card/give/me/" + id, {})
             document.getElementById('address').innerHTML = `<a href="https://www.google.com/search?q=${result.address}" target="_blank">
                                     <button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                     <div class="row">
-                                    <i class="fa fa-address fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
-                                    ${result.address} </div> </div></button> </a>`
+                                    <i class="fa fa-map-pin fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
+                                    ${result.address[]} </div> </div></button> </a>`
         }
         if (!h) {
             idk();

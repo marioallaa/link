@@ -461,7 +461,7 @@ function checkStatusCard(id) {
                 </div>
                 <div class="form-group col-md-6">
                     <label for="phone${card.id}">Phone</label>
-                    <input type="text" class="form-control" value="${card.phone}" id="email${card.id}" name="email" required>
+                    <input type="text" class="form-control" value="${card.phone}" id="phone${card.id}" name="phone" required>
                 </div>
             </div>
             <div class="row">
@@ -1044,6 +1044,7 @@ function editLink(id) {
             })
             .then(response => response.json())
             .then(result => {
+                console.log(result);
                 result.name = $("#name" + id).val();
                 result.surname = $("#surname" + id).val();
                 result.email = $("#email" + id).val();
@@ -1054,6 +1055,8 @@ function editLink(id) {
                 result.instagram = $("#instagram" + id).val();
                 result.linkedIn = $("#ln" + id).val();
                 result.twitter = $("#twitter" + id).val();
+                console.log(result);
+                console.log($("#phone" + id).val());
 
                 $.ajax({
                     type: "POST",
