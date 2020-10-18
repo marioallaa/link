@@ -115,7 +115,7 @@ fetch(baseURL + "card/give/me/" + id, {})
         }
         if (result.address) {
             h = true;
-            document.getElementById('whatsapp').innerHTML = `<a href="https://www.google.com/search?q=${result.address}" target="_blank">
+            document.getElementById('address').innerHTML = `<a href="https://www.google.com/search?q=${result.address}" target="_blank">
                                     <button type="button" style="border-radius: 25px;color: white; " class="btn black save-update col-md-11 send-form">
                                     <div class="row">
                                     <i class="fa fa-address fa-2x col-md-4"style="color: white;"> </i> <div class="col-md-4">
