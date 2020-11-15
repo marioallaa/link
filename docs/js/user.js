@@ -48,7 +48,7 @@ function checkStatusCard(id) {
                    </tr> <tr  class="white"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id=""></div></td> </tr>`;*/
         if (c.plan === 0) return;
         if (c.plan == 1) return `
-        <tr onclick="generateForBasicCard(${c.id})">
+        <tr onclick="">
             <td>${k = k + 1}</td>
             <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
             <td>${c.timeCreated.slice(3, 21)} </td>
@@ -57,13 +57,15 @@ function checkStatusCard(id) {
                     Personal
                 </i>
             </td>
+
+            <td onclick="generateForBasicCard(${c.id})" style="text-align: center; color: black;font-size: 15px;"> <i class="fas fa-edit"></i>  </td>
         </tr>
         <tr class="whitew">
-        <td class="col-md-12" colspan="4">
+        <td class="col-md-12" colspan="5">
       <div class="col col-md-12" id="cardContainer${c.id}" style="display: flex; align-items: center; justify-content: center;"></div></td>
                 </tr>`;
         if (c.plan == 7) return `
-        <tr onclick="generateForBasicCard(${c.id})">
+        <tr onclick="">
             <td>${k = k + 1}</td>
             <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
             <td>${c.timeCreated.slice(3, 21)} </td>
@@ -72,13 +74,14 @@ function checkStatusCard(id) {
                     Business
                 </i>
             </td>
+            <td onclick="generateForBasicCard(${c.id})" style="text-align: center; color: black;font-size: 15px;"> <i class="fas fa-edit"></i>  </td>
         </tr>
         <tr class="whitew">
         <td class="col-md-12" colspan="4">
         <div class="col col-md-12" id="cardContainer${c.id}" style="display: flex; align-items: center; justify-content: center;"></div></td>
                 </tr>`;
         if (c.plan == 8) return `
-        <tr onclick="generateForBasicCard(${c.id})">
+        <tr >
             <td>${k = k + 1}</td>
             <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
             <td>${c.timeCreated.slice(3, 21)} </td>
@@ -87,13 +90,14 @@ function checkStatusCard(id) {
                     Business
                 </i>
             </td>
+            <td  style="text-align: center;"> <i class="fas fa-edit"></i>  </td>
+            <td onclick="generateForBasicCard(${c.id})" style="text-align: center; color: black;font-size: 15px;"> <i class="fas fa-edit"></i>  </td>
         </tr>
         <tr class="whitew">
-        <td class="col-md-12" colspan="4">
-        <div class="col col-md-12" id="cardContainer${c.id}" style="display: flex; align-items: center; justify-content: center;"></div></td>
+        <td class="col-md-12" colspan="5">
                 </tr>`;
         if (c.plan == 2 && c.status != '!ACTIVE') return `
-        <tr onclick="generateCard(${c.id}, 0);">
+        <tr>
             <td>${k = k + 1}</td>
             <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
             <td>${c.timeCreated.slice(3, 21)} </td>
@@ -102,9 +106,11 @@ function checkStatusCard(id) {
                     Silver
                 </i>
             </td>
+            <td onclick="generateCard(${c.id}, 0);" style="text-align: center; color: black;font-size: 15px;"> <i class="fas fa-edit"></i>  </td>
+
         </tr>
         <tr class="whitew">
-            <td class="col-md-12" colspan="4">
+            <td class="col-md-12" colspan="5">
                 <div class="col col-md-12" id="cardContainer${c.id}"></div>
             </td>
         </tr>`
@@ -118,7 +124,8 @@ function checkStatusCard(id) {
                     Gold
                 </i>
             </td>
-        </tr> <tr class="whitew"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+            <td onclick="generateCard(${c.id}, 0);" style="text-align: center; color: black;font-size: 15px;"> <i class="fas fa-edit"></i>  </td>
+        </tr> <tr class="whitew"> <td class="col-md-12" colspan="5"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
         if (c.plan === 4 && c.status != '!ACTIVE') return `
         <tr onclick="generateCard(${c.id}, 0);">
             <td>${k = k + 1}</td>
@@ -129,7 +136,8 @@ function checkStatusCard(id) {
                     Silver
                 </i>
             </td>
-        </tr> <tr class="whitew"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+            <td onclick="generateCard(${c.id}, 0);" style="text-align: center; color: black;font-size: 15px;"> <i class="fas fa-edit"></i>  </td>
+        </tr> <tr class="whitew"> <td class="col-md-12" colspan="5"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
         if (c.plan === 5 && c.status != '!ACTIVE') return `
         <tr onclick="generateCard(${c.id}, 0);">
             <td>${k = k + 1}</td>
@@ -140,7 +148,8 @@ function checkStatusCard(id) {
                     Gold
                 </i>
             </td>
-        </tr> <tr class="whitew"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+            <td onclick="generateCard(${c.id}, 0);" style="text-align: center; color: black;font-size: 15px;"> <i class="fas fa-edit"></i>  </td>
+        </tr> <tr class="whitew"> <td class="col-md-12" colspan="5"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
         if (c.plan === 6 && c.status != '!ACTIVE') return `
         <tr onclick="generateCard(${c.id}, 0);">
             <td>${k = k + 1}</td>
@@ -151,8 +160,9 @@ function checkStatusCard(id) {
                     Diamond
                 </i>
             </td>
-        </tr> <tr class="whitew"> <td class="col-md-12" colspan="4"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
-        if (c.status == '!ACTIVE') return `
+            <td onclick="generateCard(${c.id}, 0);" style="text-align: center; color: black;font-size: 15px;"> <i class="fas fa-edit"></i>  </td>
+        </tr> <tr class="whitew"> <td class="col-md-12" colspan="5"><div class="col col-md-12" id="cardContainer${c.id}"></div></td> </tr>`;
+        if (c.status !== 'ACTIVE') return `
         <tr onclick="generateForDeactivatedCard(${c.id}, 0);">
             <td>${k = k + 1}</td>
             <td>${c.name + " " + c.surname + " ~ " + c.tittle + " @ " + c.company}</td>
@@ -162,7 +172,8 @@ function checkStatusCard(id) {
             Waiting..
         </i>
             </td>
-        </tr> <tr class="whitew"> <td class="col-md-12" colspan="4">
+            <td> <i class="fas fa-edit"></i>  </td>
+        </tr> <tr class="whitew"> <td class="col-md-12" colspan="5">
         <div class="col col-md-12" id="cardContainer${c.id}" style="display: flex; align-items: center; justify-content: center;"> </div></td> </tr>`;
     }
 
@@ -210,6 +221,41 @@ function checkStatusCard(id) {
             })
             .then(response => response.json())
             .then(result => {
+                if (result.myCards.length == 0) {
+                    let d = Date();
+                    fetch(baseURL + "who/am/i", {
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                            },
+                        }).then(response => response.json())
+                        .then(c => {
+                            $('#putCardHere').append(`
+                            <tr class="whitew">
+                    <td class="col-md-12" colspan="5" style="height:60px">
+                            </tr>
+                    <tr  style="opacity: 0.4">
+                        <td> + </td>
+                        <td>${c.name + " " + c.surname }</td>
+                        <td>${d.slice(3, 21)}  </td>
+                        <td style="text-align: center;">
+                            <i class="badge-pill align-self-center" style="text-align: center; color: black;font-size: 15px;  background-color: ;  padding-bottom:2px;">
+                            Order Now
+                            </i>
+                        </td>
+                        <td onclick="document.location.href = '/order/#first'" style="text-align: center; color: black;font-size: 15px;"> <i class="fas fa-edit"></i>  </td>
+                    </tr>
+
+                    <tr class="whitew">
+                    <td class="col-md-12" colspan="5" style="height:60px">
+                            </tr>
+                    `);
+
+                        })
+                        .catch(error => console.log('error', error))
+
+
+                }
                 for (var i = result.myCards.length; i > 0; i--) {
                     if (result.myCards[i - 1].status === 'ACTIVE' && result.myCards[i - 1].plan === 1) {
 
@@ -444,6 +490,21 @@ function checkStatusCard(id) {
                     </a>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="company${card.id}">Company</label>
+                    <input type="text" class="form-control" value="${card.company}" id="company${card.id}" name="company" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="tittle${card.id}">Job Title</label>
+                    <input type="text" class="form-control" value="${card.tittle}"  id="tittle${card.id}" name="Catch Line" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="lin${card.id}">Catch Line</label>
+                    <input type="text" class="form-control" value="${card.catchLine}"  id="lin${card.id}" name="Catch Line" required>
+                </div>
+            </div>
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="name${card.id}">Name</label>
@@ -493,7 +554,7 @@ function checkStatusCard(id) {
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
-            <button type="button" onClick="editLink(${card.id});" style="color: white;" class="btn black save-update col-md-5 send-form">Update</button>
+            <button type="button" onClick="updateValue(${card.id});" style="color: white;" class="btn black save-update col-md-5 send-form">Update</button>
             <!--button type="button" onClick="deactivate(${card.id});" style="color: white;" class="btn black save-update col-md-5 send-form"> Deactivate</button-->
             </div>
         </div>`;
@@ -776,7 +837,7 @@ function handleFiles(files, id) {
 
 function upload(file, id, type) {
     location.hash = "";
-    var ref = designs.child(Date.now() + '.' + file.name.split('.')[file.name.split('.').length - 1])
+    var ref = designs.child(Date.now() + Math.random() + '.' + file.name.split('.')[file.name.split('.').length - 1])
     swal_ajax('load');
     ref.put(file).then(function(snapshot) {}).then(function() {
         ref.getDownloadURL().then(function(url) {

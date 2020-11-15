@@ -477,7 +477,7 @@ input.input100 {
     top: 0;
     right: 100%;
     width: 10000px;
-    height: 100%;
+    height: 110% !important;
     background-color: #fff;
     transform-origin: bottom right;
     -webkit-transform: skewX(156deg);

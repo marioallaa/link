@@ -88,7 +88,7 @@
 }
 
 .overlay {
-    height: 0px;
+    height: 0;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -106,7 +106,7 @@
 .overlay:target {
     visibility: visible;
     opacity: 1;
-    height: 963rem;
+    height: 110%;
 }
 
 .popup {
@@ -143,7 +143,7 @@
 
 @media screen and (max-width: 963px) {
     .overlay:target {
-        height: 963rem;
+        height: 110%;
     }
     .overlay {
         margin: 3px auto;

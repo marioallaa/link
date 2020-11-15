@@ -10,8 +10,11 @@ if (id === sm) {
 fetch(baseURL + "card/give/me/" + id, {})
     .then(response => response.json()).catch(() => { idk() })
     .then(result => {
-        if (result === undefined) {
-            idk();
+        if (result === undefined || result.plan === 0) {
+            idk('Ogier Card Not Found :(');
+        }
+        if (result.status !== 'ACTIVE') {
+            idk('Sorry, This Ogier Card is Inactive');
         }
         var h = false;
         document.getElementById('linksName').innerHTML = `${result.name} ${result.surname}'s ogier links`;
@@ -124,7 +127,7 @@ fetch(baseURL + "card/give/me/" + id, {})
         }
     })
 
-function idk() {
+function idk(l = 'no card found :( ') {
     document.getElementById('signUpForm2').innerHTML = `
             <div class="form-group">
                 <h3> Ogier Links  </h3>
@@ -135,7 +138,7 @@ function idk() {
             </div>
         </div>
             <div class="form-group">
-                <h5 style="color: grey;"> no card found :( </h3>
+                <h5 style="color: grey;">${l} </h3>
             </div> `
 }
 
