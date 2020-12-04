@@ -1,7 +1,11 @@
 var storage = firebase.storage();
 var storageRef = storage.ref();
 var designs = storageRef.child('designs');
-var baseURL = "https://api.ogier.io/"; // 'http://localhost:3000/'; // 
+var baseURL = "https://api.ogier.io/"; // 'http://localhost:3000/';
+console.log(location.hash)
+if (location.hash === '#first') {
+    firstCard()
+}
 userSettings();
 var cont;
 var username;
@@ -61,6 +65,8 @@ function upload(file, ) {
         });
     });
 }
+
+
 
 
 function userSettings() {
@@ -176,6 +182,26 @@ function orderNewCard() {
     };
 };
 var a = 'ACTIVE';
+
+function firstCard() {
+    fetch(baseURL + "who/am/i", {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            },
+        }).then(response => response.json())
+        .then(u => {
+            (function($) {
+                "use strict";
+                $('#cname').val(u.name).siblings('label').addClass('active');
+                $('#csurname').val(u.surname).trigger("change");
+                $('#cmail').val(u.email).trigger("change");
+            })(jQuery);
+
+        })
+        .catch(error => console.log('error', error))
+
+}
 
 
 

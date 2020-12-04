@@ -274,7 +274,7 @@ firebase.initializeApp(firebaseConfig);
                                 localStorage.setItem('token', text.access_token)
                                 sformSuccess();
                                 setTimeout(function() {
-                                    window.location.href = "/order/";
+                                    window.location.href = "/next/";
                                 }, 500)
                             } else {
                                 sformError();
@@ -368,7 +368,7 @@ firebase.initializeApp(firebaseConfig);
                     localStorage.setItem('token', text.access_token)
                     lformSuccess();
                     setTimeout(function() {
-                        window.location.href = "/user/index.html";
+                        window.location.href = "/user/";
                     }, 500)
                 } else {
                     lformError();
@@ -421,9 +421,7 @@ firebase.initializeApp(firebaseConfig);
         // initiate variables with form content
         var email = $("#nemail").val();
         var terms = $("#nterms").val();
-        var d = { msg: `
-                    $ { email }
-                    wants to subscribe to your news letter, $ { terms } ` }
+        var d = { msg: `${ email } wants to subscribe to your news letter,$ { terms } ` }
         console.log(d);
         $.ajax({
             type: "POST",

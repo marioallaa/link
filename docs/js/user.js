@@ -231,15 +231,15 @@ function checkStatusCard(id) {
                         }).then(response => response.json())
                         .then(c => {
                             $('#putCardHere').append(`
-                            <tr class="whitew">
-                    <td class="col-md-12" colspan="5" style="height:60px">
+                            <tr class="whitew" >
+                    <td class="col-md-12" colspan="5" style="text-align: center; color: black;font-size: 15px;padding-bottom:2px;height:60px"> Order your first card with just one click! </td>
                             </tr>
-                    <tr  style="opacity: 0.4">
+                    <tr onclick="document.location.href = '/order/#first'" style="opacity: 0.4; ">
                         <td> + </td>
-                        <td>${c.name + " " + c.surname }</td>
-                        <td>${d.slice(3, 21)}  </td>
-                        <td style="text-align: center;">
-                            <i class="badge-pill align-self-center" style="text-align: center; color: black;font-size: 15px;  background-color: ;  padding-bottom:2px;">
+                        <td onclick="document.location.href = '/order/#first'" class="unselectable">${c.name + " " + c.surname }</td>
+                        <td onclick="document.location.href = '/order/#first'" class="unselectable">${d.slice(3, 21)}  </td>
+                        <td onclick="document.location.href = '/order/#first'" style="text-align: center; ">
+                            <i class="unselectable badge-pill align-self-center" style="border: 1px; border-radius: 15; text-align: center; color: black;font-size: 15px;  background-color: ;  padding-bottom:2px;">
                             Order Now
                             </i>
                         </td>
