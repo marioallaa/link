@@ -13,9 +13,9 @@ fetch(baseURL + "card/give/me/" + id, {})
         if (result === undefined || result.plan === 0) {
             idk('Ogier Card Not Found :(');
         }
-        if (result.status !== 'ACTIVE') {
-            idk('Sorry, This Ogier Card is Inactive');
-        }
+        // if (result.status !== 'ACTIVE') {
+        //     idk('Sorry, This Ogier Card is Inactive');
+        // }
         var h = false;
         document.getElementById('linksName').innerHTML = `${result.name} ${result.surname}'s ogier links`;
         if (result.landingPage) {
