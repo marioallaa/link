@@ -5,13 +5,13 @@ var sm = getParameterByName('ahsdbfkhabsdfhbajlsdhfbajhldsbfljhb');
 document.getElementById('linksName').innerHTML = `Social Links for card No. ${id}`;
 
 if (id === sm) {
-    document.location.href = "/";
+    idk()
 }
 fetch(baseURL + "card/give/me/" + id, {})
     .then(response => response.json()).catch(() => { idk() })
     .then(result => {
         if (result === undefined || result.plan === 0) {
-            idk('Ogier Card Not Found :(');
+            idk('Ogier Link Not Found :(');
         }
         // if (result.status !== 'ACTIVE') {
         //     idk('Sorry, This Ogier Card is Inactive');
@@ -130,11 +130,11 @@ fetch(baseURL + "card/give/me/" + id, {})
 function idk(l = 'no card found :( ') {
     document.getElementById('signUpForm2').innerHTML = `
             <div class="form-group">
-                <h3> Ogier Links  </h3>
+                <h3> Ogier Link  </h3>
             </div>
             <div class="image-container">
             <div class="img-wrapper">
-                <img class="img-fluid" src="/images/logo-b.png" style="width: 350px" alt="alternative">
+                <img class="img-fluid" src="https://ogier.io/images/logo-b.png" style="width: 350px" alt="alternative">
             </div>
         </div>
             <div class="form-group">
