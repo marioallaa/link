@@ -3,7 +3,7 @@ var id = getParameterByName('c');
 var baseURL = "https://api.ogier.io/"; //  'http://localhost:3000/'; // "https://api.ogier.io/";
 var sm = getParameterByName('ahsdbfkhabsdfhbajlsdhfbajhldsbfljhb');
 document.getElementById('linksName').innerHTML = `Social Links for card No. ${id}`;
-
+window.history.pushState({}, document.title, "/" );
 if (id === sm) {
     idk()
 }
